@@ -4,57 +4,123 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <string.h>
+#include <stdio.h>
 
 using namespace std;
 
 int main()
 {
-    int pid = fork();
+    cout << "$ ";
+    string input;
+    getline(cin, input);
 
-    if (pid == -1)
+    int comment = input.find('#');
+    if (comment != string::npos)
     {
-        perror("There was an error with fork().");
-        exit(1);
+        input.at(comment) = '\0';
     }
-    else if (pid == 0)
+
+    char* charin = new char[input.size()+1];
+    strcpy(charin, input.c_str());
+    //charin now has the user's input in c string, terminated by null
+
+    //while (input != "exit")
     {
-        cout << "$ ";
-        char input[1024] = {0};
-        cin.getline(input, 1024);
-
-        char* parse;
-        char** store;
-        store = new char *[1024];
-
+        int numbersemi = 0;
         int i = 0;
+        //semidone holds each commands separated by ;
+        char* parse;
+        char** semidone;
+        semidone = new char* [input.size()+1];
 
-        parse = strtok(input, " ;");
+        parse = strtok(charin, ";");
 
         while (parse != NULL)
         {
-            store[i] = parse;
-            cout << "This is in store[" << i << "]: " << store[i]  <<endl;
+            semidone[i] = parse;
+
+            cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
             i++;
-            parse = strtok(NULL, " ;");
+            numbersemi++;
+            parse = strtok(NULL, ";");
         }
 
-        if (-1 == execvp(store[0], store))
+        cout << "numbersemi beginning of for: " << numbersemi << endl;
+
+        int j = 0;
+
+        for (int k = 0; k < numbersemi; k++)
         {
-            perror("There was an error in execvp.");
+            j = 0;
+            char** useme;
+            useme = new char* [input.size()+1];
+
+            parse = strtok(semidone[k], " ");
+            while (parse != NULL)
+            {
+                useme[j] = parse;
+
+                cout << "This is in useme[" << j << "]: " << useme[j] << endl;
+                j++;
+
+                parse = strtok(NULL, " ");
+            }
+
+            cout << "I DONT THINK SO" << endl;
+
+            int pid = fork();
+
+            cout << "AM I FORKING NOW?" << endl;
+
+            if (pid == -1)
+            {
+                perror("There was an error with fork().");
+                exit(1);
+            }
+            else if (pid == 0)
+            {
+                cout << "HEY YING" << endl;
+
+                if (execvp(useme[0], useme) == -1)
+                {
+                    perror("There was an error in execvp.");
+                }
+
+                delete [] useme;
+
+                exit(1);
+            }
+            else if (pid > 0)
+            {
+                //int x;
+                //if (waitpid(-1, &x, 0) == -1)
+                if (wait(0) == -1)
+                {
+                    perror("There was an error with wait().");
+                }
+            }
         }
+        /*
+        cout << "$ ";
+        string input;
+        getline(cin, input);
 
-        cout << "THIS IS THE END OF THE CHILD" << endl;
-
-        exit(1);
-    }
-    else if (pid > 0)
-    {
-        if (-1 == wait(0))
+        int comment = input.find('#');
+        if (comment != string::npos)
         {
-            perror("There was an error with wait().");
+            input.at(comment) = '\0';
         }
-        cout << "THIS IS THE PARENT" << endl;
+
+        strcpy(charin, input.c_str());
+        */
     }
+
+
+
+
+
+
 
     return 0;
 }
