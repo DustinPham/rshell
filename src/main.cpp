@@ -16,7 +16,7 @@ int main()
     getline(cin, input);
 
     int comment = input.find('#');
-    if (comment != string::npos)
+    if (comment >= 0)
     {
         input.at(comment) = '\0';
     }
@@ -25,7 +25,7 @@ int main()
     strcpy(charin, input.c_str());
     //charin now has the user's input in c string, terminated by null
 
-    //while (input != "exit")
+    while (input != "exit")
     {
         int numbersemi = 0;
         int i = 0;
@@ -80,7 +80,7 @@ int main()
             }
             else if (pid == 0)
             {
-                cout << "HEY YING" << endl;
+                cout << "HEY" << endl;
 
                 if (execvp(useme[0], useme) == -1)
                 {
@@ -93,34 +93,26 @@ int main()
             }
             else if (pid > 0)
             {
-                //int x;
-                //if (waitpid(-1, &x, 0) == -1)
-                if (wait(0) == -1)
+                int x;
+                if (waitpid(-1, &x, 0) == -1)
+                //if (wait(0) == -1)
                 {
                     perror("There was an error with wait().");
                 }
             }
         }
-        /*
+
         cout << "$ ";
-        string input;
         getline(cin, input);
 
         int comment = input.find('#');
-        if (comment != string::npos)
+        if (comment >= 0)
         {
             input.at(comment) = '\0';
         }
 
         strcpy(charin, input.c_str());
-        */
+        delete [] semidone;
     }
-
-
-
-
-
-
-
     return 0;
 }
