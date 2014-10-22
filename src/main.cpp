@@ -53,7 +53,7 @@ int main()
             {
                 semidone[i] = parse;
 
-                cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
+                //cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
                 i++;
                 numbersemi++;
 
@@ -68,7 +68,7 @@ int main()
             {
                 semidone[i] = parse;
 
-                cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
+                //cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
                 i++;
                 numbersemi++;
 
@@ -83,7 +83,7 @@ int main()
             {
                 semidone[i] = parse;
 
-                cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
+                //cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
                 i++;
                 numbersemi++;
 
@@ -103,7 +103,7 @@ int main()
                 {
                     useme[j] = parse;
 
-                    cout << "This is in useme[" << j << "]: " << useme[j] << endl;
+                    //cout << "This is in useme[" << j << "]: " << useme[j] << endl;
                     j++;
 
                     parse = strtok(NULL, " ");
@@ -118,6 +118,11 @@ int main()
                 }
                 else if (pid == 0)
                 {
+                    if (strcmp(useme[0], "exit") == 0)
+                    {
+                        exit(1);
+                    }
+
                     if (execvp(useme[0], useme) == -1)
                     {
                         perror("There was an error in execvp.");
@@ -133,6 +138,11 @@ int main()
                     if (waitpid(-1, &x, 0) == -1)
                     {
                         perror("There was an error with wait().");
+                    }
+
+                    if (strcmp(useme[0], "exit") == 0)
+                    {
+                        exit(0);
                     }
 
                     if (x != 0)
@@ -154,7 +164,7 @@ int main()
                 {
                     useme[j] = parse;
 
-                    cout << "This is in useme[" << j << "]: " << useme[j] << endl;
+                    //cout << "This is in useme[" << j << "]: " << useme[j] << endl;
                     j++;
 
                     parse = strtok(NULL, " ");
@@ -169,6 +179,11 @@ int main()
                 }
                 else if (pid == 0)
                 {
+                    if (strcmp(useme[0], "exit") == 0)
+                    {
+                        exit(1);
+                    }
+
                     if (execvp(useme[0], useme) == -1)
                     {
                         perror("There was an error in execvp.");
@@ -184,6 +199,11 @@ int main()
                     if (waitpid(-1, &x, 0) == -1)
                     {
                         perror("There was an error with wait().");
+                    }
+
+                    if (strcmp(useme[0], "exit") == 0)
+                    {
+                        exit(0);
                     }
 
                     if (x == 0)
@@ -205,7 +225,7 @@ int main()
                 {
                     useme[j] = parse;
 
-                    cout << "This is in useme[" << j << "]: " << useme[j] << endl;
+                    //cout << "This is in useme[" << j << "]: " << useme[j] << endl;
                     j++;
 
                     parse = strtok(NULL, " ");
@@ -240,7 +260,7 @@ int main()
                     {
                         perror("There was an error with wait().");
                     }
-                    if (strcmp(useme[0], "exit"))
+                    if (strcmp(useme[0], "exit") == 0)
                     {
                         exit(0);
                     }
@@ -250,7 +270,6 @@ int main()
 
         cout << "$ ";
         getline(cin, input);
-
 
         if (input.find("#") !=  string::npos)
         {
