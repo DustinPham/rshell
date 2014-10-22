@@ -118,7 +118,6 @@ int main()
                 }
                 else if (pid == 0)
                 {
-
                     if (execvp(useme[0], useme) == -1)
                     {
                         perror("There was an error in execvp.");
@@ -135,6 +134,7 @@ int main()
                     {
                         perror("There was an error with wait().");
                     }
+
                     if (x != 0)
                     {
                         break;
@@ -169,7 +169,6 @@ int main()
                 }
                 else if (pid == 0)
                 {
-
                     if (execvp(useme[0], useme) == -1)
                     {
                         perror("There was an error in execvp.");
@@ -186,6 +185,7 @@ int main()
                     {
                         perror("There was an error with wait().");
                     }
+
                     if (x == 0)
                     {
                         break;
@@ -220,6 +220,10 @@ int main()
                 }
                 else if (pid == 0)
                 {
+                    if (strcmp(useme[0], "exit") == 0)
+                    {
+                        exit(1);
+                    }
 
                     if (execvp(useme[0], useme) == -1)
                     {
@@ -236,6 +240,10 @@ int main()
                     {
                         perror("There was an error with wait().");
                     }
+                    if (strcmp(useme[0], "exit"))
+                    {
+                        exit(0);
+                    }
                 }
             }
         }
@@ -248,7 +256,6 @@ int main()
         {
             input.at(input.find("#")) = '\0';
         }
-
 
         a = 0;
         o = 0;
