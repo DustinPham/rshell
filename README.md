@@ -73,7 +73,7 @@ Bugs/Limitations
 
 * Multiple connectors in front of and after a command without commands inbetween will cause a segmentation fault.
 
-
+* Most failures and errors are from memory leaks.
 
 
 
