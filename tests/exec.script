@@ -1,0 +1,301 @@
+Script started on Tue 21 Oct 2014 10:11:29 PM PDT
+~
+dpham008@hammer $ c [Kd CS100/rshell
+~/CS100/rshell
+dpham008@hammer $ ls [K[K[Kcd [K[K[Kbin/s[Krshell
+$ ls
+bin  LICENSE  Makefile	README	src  tests
+$ te  #testing single commands
+$ ls -a
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+$ pwd
+/home/csmajs/dpham008/CS100/rshell
+$ ps
+There was an error in execvp.: Bad address
+$ ps
+  PID TTY          TIME CMD
+41318 pts/71   00:00:00 bash
+41381 pts/71   00:00:00 rshell
+41441 pts/71   00:00:00 ps
+$ vim   echo exit
+exit
+$ #testing ; connector
+$ ls -a; ls
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+bin  LICENSE  Makefile	README	src  tests
+$ ls;pwd;echo hey
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/dpham008/CS100/rshell
+hey
+$ mkdir .temp: ; ls-a   -a; rm -rf .temp; ls -a
+.  ..  bin  .git  LICENSE  Makefile  README  src  .temp  tests
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+$ ls -a     #testing ; fails
+$ fail; pwd
+There was an error in execvp.: No such file or directory
+pwd: ignoring non-option arguments
+/home/csmajs/dpham008/CS100/rshell
+$ fail; fail
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+$ ls; fail
+bin  LICENSE  Makefile	README	src  tests
+There was an error in execvp.: No such file or directory
+$ ls  pwd ;         ;       fail
+/home/csmajs/dpham008/CS100/rshell
+There was an error in execvp.: No such file or directory
+$ lsd ; bad
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+$ ls ; fail ;pwd; echo;  hey girl! ;       ; fail
+bin  LICENSE  Makefile	README	src  tests
+There was an error in execvp.: No such file or directory
+/home/csmajs/dpham008/CS100/rshell
+hey
+There was an error in execvp.: No such file or directory
+$ pwd; exit         ls ; fail ; pwd ; ls -a ; echo boom ; pwd ; pw s ; fail
+bin  LICENSE  Makefile	README	src  tests
+There was an error in execvp.: No such file or directory
+/home/csmajs/dpham008/CS100/rshell
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+boom
+/home/csmajs/dpham008/CS100/rshell
+  PID TTY          TIME CMD
+41318 pts/71   00:00:00 bash
+41381 pts/71   00:00:00 rshell
+43056 pts/71   00:00:00 ps
+There was an error in execvp.: No such file or directory
+$ #testing && connector
+$ ls && pwd
+ls: cannot access Èÿ8Õ<: No such file or directory
+ls: cannot access pwd: No such file or directory
+ls: cannot access  echo: No such file or directory
+ls: cannot access  fail: No such file or directory
+$ ls -a
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+$ ls && pwd
+ls: cannot access (ÿ8Õ<: No such file or directory
+$ ls&&pwd
+ls: cannot access x: No such file or directory
+ls: cannot access  pwd: No such file or directory
+ls: cannot access  ls: No such file or directory
+ls: cannot access  echo: No such file or directory
+ls: cannot access  pwd: No such file or directory
+ls: cannot access  ps: No such file or directory
+ls: cannot access  fail: No such file or directory
+$ ls && pwd
+ls: cannot access À¥º: No such file or directory
+$ ls -a
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+$ pwd && ls
+pwd: ignoring non-option arguments
+/home/csmajs/dpham008/CS100/rshell
+ls: cannot access (ÿ8Õ<: No such file or directory
+$ ls  # ls
+ls: cannot access : No such file or directory
+$ ls   s
+ls: cannot access èþ8Õ<: No such file or directory
+$ ls
+bin  LICENSE  Makefile	README	src  tests
+$ l ls && pwd
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/dpham008/CS100/rshell
+$ ls       &&        pwd
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/dpham008/CS100/rshell
+$ pwd  &&ls
+pwd: ignoring non-option arguments
+/home/csmajs/dpham008/CS100/rshell
+ls: cannot access (ÿ8Õ<: No such file or directory
+$ ls
+There was an error in execvp.: Bad address
+$ ls -a
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+$ ls
+bin  LICENSE  Makefile	README	src  tests
+$ pwd&&ls
+/home/csmajs/dpham008/CS100/rshell
+bin  LICENSE  Makefile	README	src  tests
+$ #testing && with fails
+$ fail && h pwd
+There was an error in execvp.: No such file or directory
+$ pwd && fi ail
+/home/csmajs/dpham008/CS100/rshell
+There was an error in execvp.: No such file or directory
+$ echo hello && poop
+hello
+There was an error in execvp.: No such file or directory
+$ pop   poop    fail && h echo l      ls -a
+There was an error in execvp.: No such file or directory
+$ testing         ls && pwd && fail && hell    echoo  nope
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/dpham008/CS100/rshell
+There was an error in execvp.: No such file or directory
+$ testing || connce  ector
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+$ #te   #testing || connector
+$ ls
+There was an error in execvp.: Bad address
+$ ls -a
+ls: cannot access  fail: No such file or directory
+ls: cannot access  echo nope: No such file or directory
+$ ls    e ls || pwd
+There was an error in execvp.: Bad address
+/home/csmajs/dpham008/CS100/rshell
+$ ls || pwd
+bin  LICENSE  Makefile	README	src  tests
+$ pwd || ls
+/home/csmajs/dpham008/CS100/rshell
+$ pwd||ls
+/home/csmajs/dpham008/CS100/rshell
+$ ls|               ||   pwd
+bin  LICENSE  Makefile	README	src  tests
+$ ls | pwd
+ls: cannot access |: No such file or directory
+ls: cannot access pwd: No such file or directory
+$ pwd } |||l  ls
+pwd: ignoring non-option arguments
+/home/csmajs/dpham008/CS100/rshell
+$ ls ||pwd
+bin  LICENSE  Makefile	README	src  tests
+$ te  #testing || fa  with d fails
+$ poo   fail || ls
+There was an error in execvp.: No such file or directory
+ls: cannot access 8ÿ8Õ<: No such file or directory
+$ fail || pwd
+There was an error in execvp.: No such file or directory
+/home/csmajs/dpham008/CS100/rshell
+$ fail || ls
+There was an error in execvp.: No such file or directory
+bin  LICENSE  Makefile	README	src  tests
+$ fail           ||            || fail } || fail || fail || fail || ls
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+bin  LICENSE  Makefile	README	src  tests
+$ fail || fail || fail || ls || fail
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+bin  LICENSE  Makefile	README	src  tests
+$ fail || fail || fail ||f   fau    fail || fail || fail || fauk  il || ls || fail
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+There was an error in execvp.: No such file or directory
+bin  LICENSE  Makefile	README	src  tests
+$ #testing single commands with spaces in front
+$                  # ls
+ls: cannot access 0Úº: No such file or directory
+$                      ls
+ls: cannot access 0Úº: No such file or directory
+$              pwd
+pwd: ignoring non-option arguments
+/home/csmajs/dpham008/CS100/rshell
+$              ls
+bin  LICENSE  Makefile	README	src  tests
+$                      ls
+bin  LICENSE  Makefile	README	src  tests
+$                 la s -a
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+$ #different connectors on one line
+$ ls || pwd && p ls -a
+There was an error in execvp.: Bad address
+$ ^[[B    #empty commandl s
+$ 
+$ 
+$ 
+$ #testing c connectors in front
+$ ; ; ; ; ; ; pwd
+There was an error in execvp.: No such file or directory
+Segmentation fault
+~/CS100/rshell
+dpham008@hammer $ ; pwd
+bash: syntax error near unexpected token `;'
+~/CS100/rshell
+dpham008@hammer $ cd CS100/rshell
+bash: cd: CS100/rshell: No such file or directory
+~/CS100/rshell
+dpham008@hammer $ ls
+[0m[01;34mbin[0m/  LICENSE  Makefile  README  [01;34msrc[0m/  [01;34mtests[0m/
+[m~/CS100/rshell
+dpham008@hammer $ bin/rshell
+$ ; pwd
+/home/csmajs/dpham008/CS100/rshell
+$ ; ; pwd
+Segmentation fault
+~/CS100/rshell
+dpham008@hammer $ l[Kbin/rshellls[Kbin/rshell
+$ ls ; ; ;
+bin  LICENSE  Makefile	README	src  tests
+Segmentation fault
+~/CS100/rshell
+dpham008@hammer $ bin/rshell
+$ #comment  s do not get run  
+$ ls
+There was an error in execvp.: Bad address
+$ ls
+There was an error in execvp.: Bad address
+$ ls -a
+.  ..  bin  .git  LICENSE  Makefile  README  src  tests
+$ ls ; ls  w pwd;    #does nothing
+bin  LICENSE  Makefile	README	src  tests
+/home/csmajs/dpham008/CS100/rshell
+$ #testing exit
+$ exit
+~/CS100/rshell
+dpham008@hammer $ bin/rshell
+$ echo this      e you cannot exit echoing!!
+you cannot exit echoing!!
+$ blahblahexitblahblah
+There was an error in execvp.: No such file or directory
+$ blah exit l blah
+There was an error in execvp.: No such file or directory
+$ EXIT
+There was an error in execvp.: No such file or directory
+$ ls -he  fak  ail
+total 32
+15808352 drwx------ 6 dpham008 csmajs 4096 Oct 21 22:13 .
+ 9502181 drwx------ 5 dpham008 csmajs 4096 Oct 20 08:13 ..
+15808353 drwx------ 8 dpham008 csmajs 4096 Oct 21 21:06 .git
+21517617 -rw------- 1 dpham008 csmajs   92 Oct 18 01:26 LICENSE
+16784550 -rw------- 1 dpham008 csmajs  215 Oct 21 21:13 Makefile
+21517621 -rw------- 1 dpham008 csmajs   14 Oct 18 01:26 README
+10257492 drwx------ 2 dpham008 csmajs 4096 Oct 21 22:03 src
+16784544 drwx------ 2 dpham008 csmajs 4096 Oct 21 22:11 tests
+16784559 drwx------ 2 dpham008 csmajs 4096 Oct 21 22:03 bin
+$ s ls -he      pwwd    ls -fakeflas g
+ls: invalid option -- 'e'
+Try `ls --help' for more information.
+$ #faile     test failed commands and non     d fake   e flags
+$ pwwd
+There was an error in execvp.: No such file or directory
+$ ls -- fakeflag
+ls: invalid option -- 'e'
+Try `ls --help' for more information.
+$ ls -a -ls  - fakeflag
+ls: cannot access -: No such file or directory
+ls: cannot access fakeflag: No such file or directory
+$ nop pe cant run this
+There was an error in execvp.: No such file or directory
+$ echo i        #cannot run cd
+$ cd tests
+There was an error in execvp.: No such file or directory
+$ #testing calling rshell w inside of rshell
+$ bin  /rshell
+There was an error in execvp.: Bad address
+$ echo no  hello
+hello
+$ #testing finished, multiple bugs found
+$ exit
+~/CS100/rshell
+dpham008@hammer $ exit
+exit
+
+Script done on Tue 21 Oct 2014 10:30:01 PM PDT
