@@ -15,28 +15,23 @@ int main()
     string input;
     getline(cin, input);
 
-    int comment = input.find("#");
-    if (comment >= 0)
+    if (input.find("#") != string::npos)
     {
-        input.at(comment) = '\0';
+        input.at(input.find("#")) = '\0';
     }
 
-    int andd = input.find("&&");
-    bool a = false;
-    int orr = input.find("||");
-    bool o = false;
-    if (andd >= 0)
+
+    int a = 0;
+    int o = 0;
+    if (input.find("&&") != string::npos)
     {
-        a = true;
+        a = 1;
     }
-    else if (orr >= 0)
+    else if (input.find("||") != string::npos)
     {
-        o = true;
+        o = 1;
     }
 
-    //char* charin = new char[input.size()+1];
-    //strcpy(charin, input.c_str());
-    //charin now has the user's input in c string, terminated by null
 
     while (input != "exit")
     {
@@ -46,11 +41,11 @@ int main()
         int numbersemi = 0;
         int i = 0;
 
-        char* parse;
-        char** semidone;
-        semidone = new char* [input.size()+1];
+        char* parse = 0;
+        char** semidone = new char* [input.size()+1];
 
-        if (a == true)
+
+        if (a == 1)
         {
             parse = strtok(charin, "&");
 
@@ -65,7 +60,7 @@ int main()
                 parse = strtok(NULL, "&");
             }
         }
-        else if (o == true)
+        else if (o == 1)
         {
             parse = strtok(charin, "|");
 
@@ -96,15 +91,12 @@ int main()
             }
         }
 
-        if (a == true)
+        if (a == 1)
         {
-            int j = 0;
-
             for (int k = 0; k < numbersemi; k++)
             {
-                j = 0;
-                char** useme;
-                useme = new char* [input.size()+1];
+                int j = 0;
+                char** useme = new char* [input.size()+1];
 
                 parse = strtok(semidone[k], " ");
                 while (parse != NULL)
@@ -150,15 +142,12 @@ int main()
                 }
             }
         }
-        else if (o == true)
+        else if (o == 1)
         {
-            int j = 0;
-
             for (int k = 0; k < numbersemi; k++)
             {
-                j = 0;
-                char** useme;
-                useme = new char* [input.size()+1];
+                int j = 0;
+                char** useme = new char* [input.size()+1];
 
                 parse = strtok(semidone[k], " ");
                 while (parse != NULL)
@@ -206,13 +195,10 @@ int main()
         }
         else
         {
-            int j = 0;
-
             for (int k = 0; k < numbersemi; k++)
             {
-                j = 0;
-                char** useme;
-                useme = new char* [input.size()+1];
+                int j = 0;
+                char** useme = new char* [input.size()+1];
 
                 parse = strtok(semidone[k], " ");
                 while (parse != NULL)
@@ -253,30 +239,29 @@ int main()
                 }
             }
         }
-        delete [] charin;
 
         cout << "$ ";
         getline(cin, input);
 
-        int comment = input.find("#");
-        if (comment >= 0)
+
+        if (input.find("#") !=  string::npos)
         {
-            input.at(comment) = '\0';
+            input.at(input.find("#")) = '\0';
         }
 
-        andd = input.find("&&");
-        a = false;
-        orr = input.find("||");
-        o = false;
-        if (andd >= 0)
+
+        a = 0;
+        o = 0;
+        if (input.find("&&") != string::npos)
         {
             a = true;
         }
-        else if (orr >= 0)
+        else if (input.find("||") != string::npos)
         {
             o = true;
         }
 
+        delete [] charin;
         delete [] semidone;
     }
     return 0;
