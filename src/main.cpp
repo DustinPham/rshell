@@ -58,6 +58,11 @@ int main()
                 numbersemi++;
 
                 parse = strtok(NULL, "&");
+
+                if (parse == NULL)
+                {
+                    semidone[i] = parse;
+                }
             }
         }
         else if (o == 1)
@@ -73,6 +78,11 @@ int main()
                 numbersemi++;
 
                 parse = strtok(NULL, "|");
+
+                if (parse == NULL)
+                {
+                    semidone[i] = parse;
+                }
             }
         }
         else
@@ -88,6 +98,11 @@ int main()
                 numbersemi++;
 
                 parse = strtok(NULL, ";");
+
+                if (parse == NULL)
+                {
+                    semidone[i] = parse;
+                }
             }
         }
 
@@ -107,6 +122,11 @@ int main()
                     j++;
 
                     parse = strtok(NULL, " ");
+
+                    if (parse == NULL)
+                    {
+                        useme[j] = parse;
+                    }
                 }
 
                 int pid = fork();
@@ -168,6 +188,11 @@ int main()
                     j++;
 
                     parse = strtok(NULL, " ");
+
+                    if (parse == NULL)
+                    {
+                        useme[j] = parse;
+                    }
                 }
 
                 int pid = fork();
@@ -229,6 +254,11 @@ int main()
                     j++;
 
                     parse = strtok(NULL, " ");
+
+                    if (parse == NULL)
+                    {
+                        useme[j] = parse;
+                    }
                 }
 
                 int pid = fork();
