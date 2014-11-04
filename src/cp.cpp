@@ -55,70 +55,90 @@ void rwbuf(char ifile[], char ofile[]) {
 		}
 	}
 }
+	
 int main(int argc, char *argv[]) {	
-
 	string first = argv[1];
 	string second = argv[2];
+
+	struct stat s;
+	if(stat(argv[2], &s) == 0) {
+		if(s.st_mode & S_IFREG) {
+			cout << "ERROR: This file already exists." << endl;
+			exit(1);
+		}
+		else if(s.st_mode & S_IFDIR) {
+			cout << "Second argument is directory." << endl;
+		}
+		else {
+			
+			
+		}
+	}
+	else {
+		ofstream out(argv[2]);	
+		if(argc > 4 || argc < 3) {
+			cout << "Error: Need 2 or 3 arguments." << endl;
+			exit(1);
+		}
+
+		Timer t;
+		double eTime;
+
+		if(argc == 3) {
+			t.start();
+			rwbuf(argv[1], argv[2]);
+
+			cout << "Time for Method 3" << endl;
+			t.elapsedWallclockTime(eTime);
+			cout << "Wallclock time: " << eTime << endl;
+			t.elapsedUserTime(eTime);
+			cout << "User time: " << eTime << endl;
+			t.elapsedSystemTime(eTime);
+			cout << "System time: " << eTime << endl;
+		}
+	}
+		
 	
-	if(argc > 4 || argc < 3) {
-		cout << "Error: Need 2 or 3 arguments." << endl;
-		exit(1);
-	}
+			
+/*	else if(argc == 4) {
 
-	Timer t;
-	double eTime;
+cout << "No third argument, running all methods: " 
+<< endl << endl;
+t.start();
+copy(argv[1], argv[2]);
 
-	if(argc == 3) {
-		t.start();
-		rwbuf(argv[1], argv[2]);
+cout << "Time for Method 1" << endl;
+t.elapsedWallclockTime(eTime);
+cout << "Wallclock time: " << eTime << endl;
+t.elapsedUserTime(eTime);
+cout << "User time: " << eTime << endl;
+t.elapsedSystemTime(eTime);
+cout << "System time: " << eTime << endl;
 
-		cout << "Time for Method 3" << endl;
-		t.elapsedWallclockTime(eTime);
-		cout << "Wallclock time: " << eTime << endl;
-		t.elapsedUserTime(eTime);
-		cout << "User time: " << eTime << endl;
-		t.elapsedSystemTime(eTime);
-		cout << "System time: " << eTime << endl;
-	}
-	else if(argc == 4) {
+t.start();
+readwrite(argv[1], argv[2]);
 
-		cout << "No third argument, running all methods: " << endl << endl;
-		t.start();
-		copy(argv[1], argv[2]);
+cout << "Time for Method 2" << endl;
+t.elapsedWallclockTime(eTime);
+cout << "Wallclock time: " << eTime << endl;
+t.elapsedUserTime(eTime);
+cout << "User time: " << eTime << endl;
+t.elapsedSystemTime(eTime);
+cout << "System time: " << eTime << endl;
 
-		cout << "Time for Method 1" << endl;
-		t.elapsedWallclockTime(eTime);
-		cout << "Wallclock time: " << eTime << endl;
-		t.elapsedUserTime(eTime);
-		cout << "User time: " << eTime << endl;
-		t.elapsedSystemTime(eTime);
-		cout << "System time: " << eTime << endl;
+t.start();
+rwbuf(argv[1], argv[2]);
 
-		t.start();
-		readwrite(argv[1], argv[2]);
-
-		cout << "Time for Method 2" << endl;
-		t.elapsedWallclockTime(eTime);
-		cout << "Wallclock time: " << eTime << endl;
-		t.elapsedUserTime(eTime);
-		cout << "User time: " << eTime << endl;
-		t.elapsedSystemTime(eTime);
-		cout << "System time: " << eTime << endl;
-
-		t.start();
-		rwbuf(argv[1], argv[2]);
-
-		cout << "Time for Method 3" << endl;
-		t.elapsedWallclockTime(eTime);
-		cout << "Wallclock time: " << eTime << endl;
-		t.elapsedUserTime(eTime);
-		cout << "User time: " << eTime << endl;
-		t.elapsedSystemTime(eTime);
-		cout << "System time: " << eTime << endl;
+cout << "Time for Method 3" << endl;
+t.elapsedWallclockTime(eTime);
+cout << "Wallclock time: " << eTime << endl;
+t.elapsedUserTime(eTime);
+cout << "User time: " << eTime << endl;
+t.elapsedSystemTime(eTime);
+cout << "System time: " << eTime << endl;
 
 
-
-	}
+}*/	
 
 	
 
