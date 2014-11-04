@@ -43,7 +43,7 @@ void rwbuf(char ifile[], char ofile[]) {
 
 	int desci = open(ifile, O_RDONLY);
 	int desco = open(ofile, O_WRONLY);
-	if(read(desci, buf, BUFSIZ) != '\0) {
+	if(read(desci, buf, BUFSIZ) != '\0') {
 		perror("reading error");
 		exit(1);
 	}
