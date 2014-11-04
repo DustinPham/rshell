@@ -11,3 +11,8 @@ rshell:
 	then mkdir bin;\
 	fi
 	$(G++) src/main.cpp -o bin/rshell
+cd:
+	if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+	$(G++) src/cp.cpp	-o bin/cp
