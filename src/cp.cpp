@@ -13,7 +13,6 @@ void copy(char input[], char *output) {
 	ofstream out(output);
 	ifstream in(input);
 		
-	struct stat buf;
 	char c = in.get();
 
 	while(in.good()) {
@@ -76,30 +75,37 @@ void rwbuf(char ifile[], char ofile[]) {
 
 	
 int main(int argc, char *argv[]) {	
-	string first = argv[1];
 	string temp;
-
+	char *tmp = 0;
 	struct stat s;
 	
-	if(argv[1][0] != '.' && argv[1][1] != '/') {
+	if(argv[1][0] == '.' && argv[1][1] == '/') {
+		tmp = argv[1];
+		argv[1] = argv[2];
+		argv[2] = tmp;
+	}
+	if(argv[2][0] == '-' && argv[2][1] == 'f') {
+		tmp = argv[2];
+		argv[2] = argv[3];
+		argv[3] = tmp;
+	}
+
+	string first = argv[1];
+	string second = argv[2];
+	
+	if(first.at(0) != '.' && first.at(1) != '/') {
 		temp = "./";
 		first = temp + first;
 		
-		if(stat(argv[1], &s) == -1) {
+		if(stat(first.c_str(), &s) == -1) {
 			perror("stat");
 			exit(1);
-		}
+		}	
 		if(s.st_mode & S_IFDIR) {
 			cout << "First argument is a directory" << endl;
 			exit(1);
 		}
-		if(argv[2][0] == '-' && argv[2][1] == 'f') {
-			char *tmp= argv[2];
-			argv[2] = argv[3];
-			argv[3] = tmp;
-		}
 	}
-	
 	else { 
 		if(stat(argv[1], &s) == -1) {
 			perror("stat");
@@ -109,6 +115,7 @@ int main(int argc, char *argv[]) {
 			cout << "First argument is a directory." << endl;
 		}
 	}
+
 	if(ifstream(argv[2])) {
 		cout << "Error: Second input is an existing file." << endl;
 		exit(1);
@@ -137,21 +144,7 @@ int main(int argc, char *argv[]) {
 			make.close();
 		}	
 	}
-		/*if(argv[3][1] != 'f') {
-			cout << "Invalid flag." << endl;
-			exit(1);
-			}
-		else if(argv[3][1] == 'f') {
-			ofstream make(argv[2]);
-			if(!make.good()) {
-				cout << "Cannot open file" << endl;
-				exit(1);
-			}
-			make.close();
-		}*/
 	
-	
-	string second = argv[2];
 	if(second.at(0) != '.' && second.at(1) != '/')  {
 		temp = "./";
 		second = temp + second;
@@ -168,7 +161,7 @@ int main(int argc, char *argv[]) {
 	
 	else  {
 		if(stat(argv[2], &s) == -1) {
-			perror("stat, argv[2]");
+			perror("stat");
 			exit(1);
 		}
 		if(s.st_mode & S_IFDIR) {
@@ -187,12 +180,6 @@ int main(int argc, char *argv[]) {
 	double eTime;
 
 	if(argc == 3) {
-		int fd = open(argv[2], O_WRONLY | O_RDONLY | O_CREAT | O_EXCL);
-		if(fd == 0) {
-			perror("creating");
-			exit(1);
-		}
-		else {
 			t.start();
 			rwbuf(argv[1], argv[2]);
 
@@ -203,16 +190,8 @@ int main(int argc, char *argv[]) {
 			cout << "User time: " << eTime << endl;
 			t.elapsedSystemTime(eTime);
 			cout << "System time: " << eTime << endl;
-		}
 	}
 	else if(argc == 4) {
-		
-		if(argv[3][0] != '-' || argv[3][1] != 'f') {
-			cout << "Invalid third argument." << endl;
-			exit(1);
-		}
-		else {
-			if(stat(argv[2], &s) != -1) {
 		
 				t.start();
 				copy(argv[1], argv[2]);
@@ -246,14 +225,6 @@ int main(int argc, char *argv[]) {
 				cout << "User time: " << eTime << endl;
 				t.elapsedSystemTime(eTime);
 				cout << "System time: " << eTime << endl;
-
-		}
-			else {
-				cout << "this file already exists" << endl;
-				exit(1);
-			}
-
-		}	
 	}
 	
 	
