@@ -20,7 +20,6 @@ int main()
         input.at(input.find("#")) = '\0';
     }
 
-
     int a = 0;
     int o = 0;
     if (input.find("&&") != string::npos)
@@ -32,7 +31,6 @@ int main()
         o = 1;
     }
 
-
     while (input != "exit")
     {
         char* charin = new char[input.size()+1];
@@ -43,7 +41,6 @@ int main()
 
         char* parse = 0;
         char** semidone = new char* [input.size()+1];
-
 
         if (a == 1)
         {
@@ -148,7 +145,7 @@ int main()
                         perror("There was an error in execvp.");
                     }
 
-                    delete [] useme;
+                    //delete [] useme;
 
                     exit(1);
                 }
@@ -170,6 +167,7 @@ int main()
                         break;
                     }
                 }
+                delete [] useme;
             }
         }
         else if (o == 1)
@@ -214,7 +212,7 @@ int main()
                         perror("There was an error in execvp.");
                     }
 
-                    delete [] useme;
+                    //delete [] useme;
 
                     exit(1);
                 }
@@ -236,6 +234,7 @@ int main()
                         break;
                     }
                 }
+                delete [] useme;
             }
         }
         else
@@ -280,7 +279,7 @@ int main()
                         perror("There was an error in execvp.");
                     }
 
-                    delete [] useme;
+                    //delete [] useme;
 
                     exit(1);
                 }
@@ -295,6 +294,7 @@ int main()
                         exit(0);
                     }
                 }
+                delete [] useme;
             }
         }
 
