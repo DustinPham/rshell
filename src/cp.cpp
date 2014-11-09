@@ -1,6 +1,6 @@
+#include <unistd.h>
 #include <iostream>
 #include <fstream>
-#include <unistd.h>
 #include <stdio.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -16,8 +16,8 @@ void copy(char input[], char *output) {
 	char c = in.get();
 
 	while(in.good()) {
-			out.put(c);
-			c = in.get();
+		out.put(c);
+		c = in.get();
 	}
 	
 }
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
 	char *tmp = 0;
 	struct stat s;
 	
-	if(argv[1][0] == '.' && argv[1][1] == '/') {
+	if(argv[1][0] != '-' && argv[1][1] != 'f') {
 		tmp = argv[1];
 		argv[1] = argv[2];
 		argv[2] = tmp;
@@ -92,15 +92,15 @@ int main(int argc, char *argv[]) {
 
 	string first = argv[1];
 	string second = argv[2];
-	
+
 	if(first.at(0) != '.' && first.at(1) != '/') {
 		temp = "./";
 		first = temp + first;
-		
+	
 		if(stat(first.c_str(), &s) == -1) {
 			perror("stat");
 			exit(1);
-		}	
+		}
 		if(s.st_mode & S_IFDIR) {
 			cout << "First argument is a directory" << endl;
 			exit(1);
@@ -180,16 +180,16 @@ int main(int argc, char *argv[]) {
 	double eTime;
 
 	if(argc == 3) {
-			t.start();
-			rwbuf(argv[1], argv[2]);
+		t.start();
+		rwbuf(argv[1], argv[2]);
 
-			cout << "Time for Method 3" << endl;
-			t.elapsedWallclockTime(eTime);
-			cout << "Wallclock time: " << eTime << endl;
-			t.elapsedUserTime(eTime);
-			cout << "User time: " << eTime << endl;
-			t.elapsedSystemTime(eTime);
-			cout << "System time: " << eTime << endl;
+		cout << "Time for Method 3" << endl;
+		t.elapsedWallclockTime(eTime);
+		cout << "Wallclock time: " << eTime << endl;
+		t.elapsedUserTime(eTime);
+		cout << "User time: " << eTime << endl;
+		t.elapsedSystemTime(eTime);
+		cout << "System time: " << eTime << endl;
 	}
 	else if(argc == 4) {
 		
@@ -225,8 +225,8 @@ int main(int argc, char *argv[]) {
 				cout << "User time: " << eTime << endl;
 				t.elapsedSystemTime(eTime);
 				cout << "System time: " << eTime << endl;
-	}
-	
+
+	}	
 	
 	return 0;
 }
