@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
 	char *tmp = 0;
 	struct stat s;
 	
-	if(argv[1][0] != '-' && argv[1][1] != 'f') {
+	if(argv[1][0] == '-' && argv[1][1] == 'f') {
 		tmp = argv[1];
 		argv[1] = argv[2];
 		argv[2] = tmp;
