@@ -9,51 +9,65 @@
 #include <pwd.h>
 #include <grp.h>
 #include <stdlib.h>
+#include <algorithm>
+#include <iomanip>
 
 #include <iostream>
 
 using namespace std;
+/*
+void makeo(vector<string> &d, vector<string> &o, int aflag,int lflag, int Rflag, int args, int &width) {
+    struct stat s;
 
-void sort(vector<string> &o, int n) {
-    int condition = 1;
-    int j = 0;
-    string temp;
-    if (n == 0) {
-        while (condition == 1) {
-            condition = 0;
-            for (int i = 0; i < o.size() - 1; i++) {
-                //if (strcasecmp(o.at(i).c_str(), o.at(i+1).c_str())) {
-                if (o.at(i) > o.at(i+1)) {
-                    //swap(o.at(i), o.at(i+1));
-                    temp = o.at(i);
-                    o.at(i) = o.at(i+1);
-                    o.at(i+1) = temp;
-                    condition = 1;
-                }
+    if (lstat((d.at(0)).c_str(), &s) == -1) {
+        perror("Error with stat");
+        exit(1);
+    }
+    if (S_ISREG(s.st_mode)) {
+        o.push_back(d.at(0));
+    }
+    else if (S_ISDIR(s.st_mode)) {
+        DIR *dirp = opendir((d.at(0)).c_str());
+        if (dirp == '\0') {
+            perror("Error with opendir");
+            exit(1);
+        }
+
+        dirent *direntp;
+        while ((direntp = readdir(dirp))) {
+            if (direntp == '\0') {
+                perror("Error with readdir");
+                exit(1);
+            }
+
+            char temp[512];
+            strcpy(temp, (d.at(0)).c_str());
+            strcat(temp, "/");
+            strcat(temp, direntp->d_name);
+
+            if (lstat(temp, &s) == -1) {
+                perror("Error with stat");
+                exit(1);
+            }
+
+            if (aflag == 1) {
+                o.push_back(direntp->d_name);
+            }
+            else if (direntp->d_name[0] != '.') {
+                o.push_back(direntp->d_name);
             }
         }
-    }
-    else {
-        while (condition == 1) {
-            condition = 0;
-            for (int i = 0; i < o.size() - 1; i++) {
-                //if (strcasecmp(o.at(i).c_str(), o.at(i+1).c_str())) {
-                if (o.at(i) < o.at(i+1)) {
-                    //swap(o.at(i), o.at(i+1));
-                    temp = o.at(i);
-                    o.at(i) = o.at(i+1);
-                    o.at(i+1) = temp;
-                    condition = 1;
-                }
-            }
+        if (closedir(dirp) == -1) {
+            perror("Error with closedir");
+            exit(1);
         }
     }
 }
-
-void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
+*/
+void print(vector<string> &d, int aflag,int lflag, int Rflag, int args, int &width) {
     struct stat s;
 
-    if (stat((d.at(d.size()-1)).c_str(), &s) == -1) {
+    if (lstat((d.at(0)).c_str(), &s) == -1) {
         perror("Error with stat");
         exit(1);
     }
@@ -177,22 +191,114 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
             strftime(outtime, 100, "%b %e %H:%M", ltime);
             cout << outtime << " ";
 
-            cout << d.at(d.size()-1) << endl;
+            if ((d.at(0).at(0) == '.') && (S_ISLNK(s.st_mode))) {
+                cout << "\033[1;100;36m" << d.at(0) << "\033[0;00m" << endl;
+            }
+            else if ((d.at(0).at(0) == '.') && (s.st_mode & S_IFDIR)) {
+                cout << "\033[1;100;34m" << d.at(0) << "\033[0;00m" << endl;
+            }
+            else if ((d.at(0).at(0) == '.') && (s.st_mode & S_IXUSR)) {
+                cout << "\033[1;100;32m" << d.at(0) << "\033[0;00m" << endl;
+            }
+            else if (d.at(0).at(0) == '.') {
+                cout << "\033[1;100;37m" << d.at(0) << "\033[0;00m" << endl;
+            }
+            else if (S_ISLNK(s.st_mode)) {
+                cout << "\033[1;36m" << d.at(0) << "\033[0;00m" << endl;
+            }
+            else if (s.st_mode & S_IFDIR) {
+                cout << "\033[1;34m" << d.at(0) << "\033[0;00m" << endl;
+            }
+            else if (s.st_mode & S_IXUSR) {
+                cout << "\033[1;32m" << d.at(0) << "\033[0;00m" << endl;
+            }
+            else {
+                cout << d.at(0) << endl;
+            }
         }
         else {
-            cout << d.at(d.size()-1) << endl;
+            if (width < 60) {
+                if ((d.at(0).at(0) == '.') && (S_ISLNK(s.st_mode))) {
+                    cout << "\033[1;100;36m" << setw(20) << left << d.at(0) << "\033[0;00m" << " ";
+                    width = width + 20;
+                }
+                else if ((d.at(0).at(0) == '.') && (s.st_mode & S_IFDIR)) {
+                    cout << "\033[1;100;34m" << setw(20) << left << d.at(0) << "\033[0;00m" << " ";
+                    width = width + 20;
+                }
+                else if ((d.at(0).at(0) == '.') && (s.st_mode & S_IXUSR)) {
+                    cout << "\033[1;100;32m" << setw(20) << left << d.at(0) << "\033[0;00m" << " ";
+                    width = width + 20;
+                }
+                else if (d.at(0).at(0) == '.') {
+                    cout << "\033[1;100;37m" << setw(20) << left << d.at(0) << "\033[0;00m" << " ";
+                    width = width + 20;
+                }
+                else if (S_ISLNK(s.st_mode)) {
+                    cout << "\033[1;36m" << setw(20) << left << d.at(0) << "\033[0;00m" << " ";
+                    width = width + 20;
+                }
+                else if (s.st_mode & S_IFDIR) {
+                    cout << "\033[1;34m" << setw(20) << left << d.at(0) << "\033[0;00m" << " ";
+                    width = width + 20;
+                }
+                else if (s.st_mode & S_IXUSR) {
+                    cout << "\033[1;32m" << setw(20) << left << d.at(0) << "\033[0;00m" << " ";
+                    width = width + 20;
+                }
+                else {
+                    cout << setw(20) << left << d.at(0)  << " ";
+                    width = width + 20;
+                }
+            }
+            else {
+                if ((d.at(0).at(0) == '.') && (S_ISLNK(s.st_mode))) {
+                    cout << "\033[1;100;36m" << setw(20) << left << d.at(0) << "\033[0;00m" << endl;
+                    width = 0;
+                }
+                else if ((d.at(0).at(0) == '.') && (s.st_mode & S_IFDIR)) {
+                    cout << "\033[1;100;34m" << setw(20) << left << d.at(0) << "\033[0;00m" << endl;
+                    width = 0;
+                }
+                else if ((d.at(0).at(0) == '.') && (s.st_mode & S_IXUSR)) {
+                    cout << "\033[1;100;32m" << setw(20) << left << d.at(0) << "\033[0;00m" << endl;
+                    width = 0;
+                }
+                else if (d.at(0).at(0) == '.') {
+                    cout << "\033[1;100;37m" << setw(20) << left << d.at(0) << "\033[0;00m" << endl;
+                    width = 0;
+                }
+                else if (S_ISLNK(s.st_mode)) {
+                    cout << "\033[1;36m" << setw(20) << left << d.at(0) << "\033[0;00m" << endl;
+                    width = 0;
+                }
+                else if (s.st_mode & S_IFDIR) {
+                    cout << "\033[1;34m" << setw(20) << left << d.at(0) << "\033[0;00m" << endl;
+                    width = 0;
+                }
+                else if (s.st_mode & S_IXUSR) {
+                    cout << "\033[1;32m" << setw(20) << left << d.at(0) << "\033[0;00m" << endl;
+                    width = 0;
+                }
+                else {
+                    cout << setw(20) << left << d.at(0) << endl;
+                    width = 0;
+                }
+            }
         }
     }
     else if (S_ISDIR(s.st_mode)) {
-        DIR *dirp = opendir((d.at(d.size()-1)).c_str());
+        DIR *dirp = opendir((d.at(0)).c_str());
         if (dirp == '\0') {
             perror("Error with opendir");
             exit(1);
         }
 
         if (args > 1) {
-            cout << d.at(d.size()-1) << ":" << endl;
+            cout << d.at(0) << ":" << endl;
         }
+
+        int ptotal = 0;
 
         dirent *direntp;
         while ((direntp = readdir(dirp))) {
@@ -201,19 +307,22 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
                 exit(1);
             }
 
-            //string temp = d.at(d.size()-1);
-            //temp = temp + "/" + direntp->d_name;
-
-            char temp[1024];
-            strcpy(temp, (d.at(d.size()-1)).c_str());
+            char temp[512];
+            strcpy(temp, (d.at(0)).c_str());
             strcat(temp, "/");
             strcat(temp, direntp->d_name);
 
-            if (stat(temp, &s) == -1) {
+            if (lstat(temp, &s) == -1) {
                 perror("Error with stat");
+                exit(1);
             }
+
             if (aflag == 1) {
                 if (lflag == 1) {
+                    if (ptotal == 0) {
+                        cout << "total " << s.st_blocks << endl;
+                        ptotal = 1;
+                    }
                     //print type, directory/symbolic link/regular file
                     if (S_ISDIR(s.st_mode)) {
                         cout << "d";
@@ -324,18 +433,7 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
                         cout << groupid->gr_name << " ";
                     }
 
-                    //formatting, if size is too small
-                    if (s.st_size <= 9) {
-                        cout << "   ";
-                    }
-                    else if (s.st_size <= 99) {
-                        cout << "  ";
-                    }
-                    else if (s.st_size <= 999) {
-                        cout << " ";
-                    }
-
-                    cout << s.st_size << " ";
+                    cout << setw(5) << s.st_size << " ";
 
                     time_t time = s.st_mtime;
                     struct tm *ltime = localtime(&time);
@@ -343,14 +441,108 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
                     strftime(outtime, 100, "%b %e %H:%M", ltime);
                     cout << outtime << " ";
 
-                    cout << direntp->d_name << endl;
+                    if ((direntp->d_name[0] == '.') && (S_ISLNK(s.st_mode))) {
+                        cout << "\033[1;100;36m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IFDIR)) {
+                        cout << "\033[1;100;34m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IXUSR)) {
+                        cout << "\033[1;100;32m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if (direntp->d_name[0]  == '.') {
+                        cout << "\033[1;100;37m" << direntp-> d_name << "\033[0;00m" << endl;
+                    }
+                    else if (S_ISLNK(s.st_mode)) {
+                        cout << "\033[1;36m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if (s.st_mode & S_IFDIR) {
+                        cout << "\033[1;34m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if (s.st_mode & S_IXUSR) {
+                        cout << "\033[1;32m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else {
+                        cout << direntp->d_name << endl;
+                    }
                 }
                 else {
-                    cout << direntp->d_name << endl;
+                    if (width < 60) {
+                        if ((direntp->d_name[0] == '.') && (S_ISLNK(s.st_mode))) {
+                            cout << "\033[1;100;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IFDIR)) {
+                            cout << "\033[1;100;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IXUSR)) {
+                            cout << "\033[1;100;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (direntp->d_name[0]  == '.') {
+                            cout << "\033[1;100;37m" << setw(20) << left << direntp-> d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (S_ISLNK(s.st_mode)) {
+                            cout << "\033[1;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (s.st_mode & S_IFDIR) {
+                            cout << "\033[1;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (s.st_mode & S_IXUSR) {
+                            cout << "\033[1;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else {
+                            cout << setw(20) << left << direntp->d_name << " ";
+                            width = width + 20;
+                        }
+                    }
+                    else {
+                        if ((direntp->d_name[0] == '.') && (S_ISLNK(s.st_mode))) {
+                            cout << "\033[1;100;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IFDIR)) {
+                            cout << "\033[1;100;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IXUSR)) {
+                            cout << "\033[1;100;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (direntp->d_name[0]  == '.') {
+                            cout << "\033[1;100;37m" << setw(20) << left << direntp-> d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (S_ISLNK(s.st_mode)) {
+                            cout << "\033[1;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (s.st_mode & S_IFDIR) {
+                            cout << "\033[1;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (s.st_mode & S_IXUSR) {
+                            cout << "\033[1;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else {
+                            cout << setw(20) << left << direntp->d_name << endl;
+                            width = 0;
+                        }
+                    }
                 }
             }
-            else if ((direntp->d_name)[0] != '.') {
+            else if (direntp->d_name[0] != '.') {
                 if (lflag == 1) {
+                    if (ptotal == 0) {
+                        cout << "total " << s.st_blocks << endl;
+                        ptotal = 1;
+                    }
                     //print type, directory/symbolic link/regular file
                     if (S_ISDIR(s.st_mode)) {
                         cout << "d";
@@ -461,17 +653,7 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
                         cout << groupid->gr_name << " ";
                     }
 
-                    //formatting, if size is too small
-                    if (s.st_size <= 9) {
-                        cout << "   ";
-                    }
-                    else if (s.st_size <= 99) {
-                        cout << "  ";
-                    }
-                    else if (s.st_size <= 999) {
-                        cout << " ";
-                    }
-                    cout << s.st_size << " ";
+                    cout << setw(5) << s.st_size << " ";
 
                     time_t time = s.st_mtime;
                     struct tm *ltime = localtime(&time);
@@ -479,10 +661,100 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
                     strftime(outtime, 100, "%b %e %H:%M", ltime);
                     cout << outtime << " ";
 
-                    cout << direntp->d_name << endl;
+                    if ((direntp->d_name[0] == '.') && (S_ISLNK(s.st_mode))) {
+                        cout << "\033[1;100;36m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IFDIR)) {
+                        cout << "\033[1;100;34m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IXUSR)) {
+                        cout << "\033[1;100;32m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if (direntp->d_name[0]  == '.') {
+                        cout << "\033[1;100;37m" << direntp-> d_name << "\033[0;00m" << endl;
+                    }
+                    else if (S_ISLNK(s.st_mode)) {
+                        cout << "\033[1;36m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if (s.st_mode & S_IFDIR) {
+                        cout << "\033[1;34m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else if (s.st_mode & S_IXUSR) {
+                        cout << "\033[1;32m" << direntp->d_name << "\033[0;00m" << endl;
+                    }
+                    else {
+                        cout << direntp->d_name << endl;
+                    }
                 }
                 else {
-                    cout << direntp->d_name << endl;
+                    if (width < 60) {
+                        if ((direntp->d_name[0] == '.') && (S_ISLNK(s.st_mode))) {
+                            cout << "\033[1;100;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IFDIR)) {
+                            cout << "\033[1;100;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IXUSR)) {
+                            cout << "\033[1;100;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (direntp->d_name[0]  == '.') {
+                            cout << "\033[1;100;37m" << setw(20) << left << direntp-> d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (S_ISLNK(s.st_mode)) {
+                            cout << "\033[1;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (s.st_mode & S_IFDIR) {
+                            cout << "\033[1;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else if (s.st_mode & S_IXUSR) {
+                            cout << "\033[1;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << " ";
+                            width = width + 20;
+                        }
+                        else {
+                            cout << setw(20) << left << direntp->d_name << " ";
+                            width = width + 20;
+                        }
+                    }
+                    else {
+                        if ((direntp->d_name[0] == '.') && (S_ISLNK(s.st_mode))) {
+                            cout << "\033[1;100;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IFDIR)) {
+                            cout << "\033[1;100;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if ((direntp->d_name[0] == '.') && (s.st_mode & S_IXUSR)) {
+                            cout << "\033[1;100;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (direntp->d_name[0]  == '.') {
+                            cout << "\033[1;100;37m" << setw(20) << left << direntp-> d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (S_ISLNK(s.st_mode)) {
+                            cout << "\033[1;36m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (s.st_mode & S_IFDIR) {
+                            cout << "\033[1;34m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else if (s.st_mode & S_IXUSR) {
+                            cout << "\033[1;32m" << setw(20) << left << direntp->d_name << "\033[0;00m" << endl;
+                            width = 0;
+                        }
+                        else {
+                            cout << setw(20) << left << direntp->d_name << endl;
+                            width = 0;
+                        }
+                    }
                 }
             }
         }
@@ -493,9 +765,81 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args) {
     }
 }
 
+bool find(vector<string> a, string p) {
+    bool found = false;
+    for (int i = 0; i < a.size(); i++) {
+        if (a.at(i) == p) {
+            found = true;
+        }
+    }
+    return found;
+}
+
+void recursion(vector<string> &directories, int aflag, int lflag, int Rflag, int args, int width) {
+    if (directories.empty()) {
+        return;
+    }
+    struct stat s;
+    string temp;
+
+    DIR *dirp = opendir((directories.at(0)).c_str());
+    if (dirp == '\0') {
+        perror("Error with opendir");
+        exit(1);
+    }
+
+    dirent *direntp;
+    while ((direntp = readdir(dirp))) {
+        if (direntp == '\0') {
+            perror("Error with readdir");
+            exit(1);
+        }
+        if ((direntp->d_name)[0] == '.' && (direntp->d_name)[1] == '.') {
+            continue;
+        }
+
+        temp = directories.at(0);
+        temp = temp + "/" + direntp->d_name;
+
+        if (temp == "./.") {
+            temp = ".";
+        }
+
+        if (direntp->d_name[0] == '.' && aflag == 0) {
+            continue;
+        }
+
+        if (stat(temp.c_str(), &s) == -1) {
+            perror("Error with stat");
+            exit(1);
+        }
+        if (S_ISREG(s.st_mode)) {
+            continue;
+        }
+        else if (S_ISDIR(s.st_mode)) {
+            string t = direntp->d_name;
+            if (find(directories, temp) || t == "." || t == "..") {
+                continue;
+            }
+            directories.push_back(temp);
+        }
+    }
+
+    if (closedir(dirp) == -1) {
+        perror("Error with closedir");
+        exit(1);
+    }
+
+    sort(directories.begin(), directories.end(), locale("en_US.UTF-8"));
+
+    print(directories, aflag, lflag, Rflag, args, width);
+    cout << endl;
+    directories.erase(directories.begin());
+    recursion(directories, aflag, lflag, Rflag, args, width);
+}
+
 int main(int argc, char* argv[]) {
     vector<string> dandf;
-    vector<string> output;
 
     string temp = ".";
     string a = "-a", la = "-la", al = "-al";
@@ -547,13 +891,30 @@ int main(int argc, char* argv[]) {
         dandf.push_back(".");
     }
 
-    sort(dandf, 1);
+    int width = 0;
+    sort(dandf.begin(), dandf.end(), locale("en_US.UTF-8"));
     int size = dandf.size();
+    /*
+    vector<string> output;
+    makeo(dandf, output, aflag, lflag, Rflag, size, width);
+    sort(output.begin(), output.end(), locale("en_US.UTF-8"));
 
-    while (!dandf.empty()) {
-        print(dandf, aflag, lflag, Rflag, size);
+    for (int i = 0; i < output.size(); i++) {
+        cout << "output(" << i << "): " << output.at(i) << endl;
+    }
+    */
+    if (Rflag == 1) {
+        vector<string> alld(dandf);
+        size = 2;
+        sort(alld.begin(), alld.end(), locale("en_US.UTF-8"));
+        recursion(alld, aflag, lflag, Rflag, size, width);
+    }
+    else {
+        while (!dandf.empty()) {
+            print(dandf, aflag, lflag, Rflag, size, width);
+            dandf.erase(dandf.begin());
+        }
         cout << endl;
-        dandf.pop_back();
     }
 
     return 0;
