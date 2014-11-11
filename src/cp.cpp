@@ -78,7 +78,10 @@ int main(int argc, char *argv[]) {
 	string temp;
 	char *tmp = 0;
 	struct stat s;
-	
+	if(argc == 1) {
+		cout << "Error, please input parameters." << endl;
+		exit(1);
+	}	
 	if(argv[1][0] == '-' && argv[1][1] == 'f') {
 		tmp = argv[1];
 		argv[1] = argv[2];
