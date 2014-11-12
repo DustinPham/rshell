@@ -15,6 +15,7 @@
 #include <iostream>
 
 using namespace std;
+
 /*
 void makeo(vector<string> &d, vector<string> &o, int aflag,int lflag, int Rflag, int args, int &width) {
     struct stat s;
@@ -64,6 +65,7 @@ void makeo(vector<string> &d, vector<string> &o, int aflag,int lflag, int Rflag,
     }
 }
 */
+
 void print(vector<string> &d, int aflag,int lflag, int Rflag, int args, int &width) {
     struct stat s;
 
@@ -183,7 +185,7 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args, int &wid
                 cout << groupid->gr_name << " ";
             }
 
-            cout << s.st_size << " ";
+            cout << setw(5) << s.st_size << " ";
 
             time_t time = s.st_mtime;
             struct tm *ltime = localtime(&time);
@@ -906,15 +908,13 @@ int main(int argc, char* argv[]) {
     int width = 0;
     sort(dandf.begin(), dandf.end(), locale("en_US.UTF-8"));
     int size = dandf.size();
+
     /*
     vector<string> output;
     makeo(dandf, output, aflag, lflag, Rflag, size, width);
     sort(output.begin(), output.end(), locale("en_US.UTF-8"));
-
-    for (int i = 0; i < output.size(); i++) {
-        cout << "output(" << i << "): " << output.at(i) << endl;
-    }
     */
+
     if (Rflag == 1) {
         vector<string> alld(dandf);
         size = 2;
@@ -926,6 +926,12 @@ int main(int argc, char* argv[]) {
             print(dandf, aflag, lflag, Rflag, size, width);
             dandf.erase(dandf.begin());
         }
+        /*
+        while (!output.empty()) {
+            print(output, aflag, lflag, Rflag, size, width);
+            output.erase(output.begin());
+        }
+        */
         cout << endl;
     }
 
