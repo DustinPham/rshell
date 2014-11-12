@@ -46,6 +46,7 @@ Using ls
 * Run `bin/ls` to view files in the current directory.
 * Use optional flags `-a`, `-l`, and `-R` to show hidden files, use long listing format, and recursively go through directories respectively.
 * `bin/ls` can be used with optional file or directory parameters.
+* Directories are displayed in blue, executables are displayed in green, and hidden files are displayed with a gray background. Directories and executable colors can be combined with the hidden file color background.
 
 Bugs/Limitations
 -----------------
