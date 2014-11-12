@@ -36,7 +36,7 @@ void readwrite(char ifile[], char ofile[]) {
 	}
 
 	int red;
-	while(red = read(desci, buf, 1) != '\0') {
+	while((red = read(desci, buf, 1)) != '\0') {
 		if(red == -1) {
 			perror("reading error");
 			exit(1);
