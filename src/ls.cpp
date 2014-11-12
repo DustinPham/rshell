@@ -896,6 +896,11 @@ int main(int argc, char* argv[]) {
             lflag = 1;
             Rflag = 1;
         }
+        else if (argv[i][0] == '-') {
+            cout << "Error: Wrong flag(s)" << endl;
+            cout << "Try: -a, -l, -R, or any combinations" << endl;
+            exit(1);
+        }
         else if (i != 0) {
             dandf.push_back(argv[i]);
         }
