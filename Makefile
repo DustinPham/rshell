@@ -16,9 +16,9 @@ cd:
 	if [ ! -d "./bin" ];\
 	then mkdir bin;\
 	fi
-	$(G++) src/cp.cpp	-o bin/cp
+	$(G++) src/cp.cpp -o bin/cp
 ls:
 	if [ ! -d "./bin" ];\
 	then mkdir bin;\
 	fi
-	$(G++) src/ls.cpp	-o bin/ls
+	$(G++) src/ls.cpp -o bin/ls
