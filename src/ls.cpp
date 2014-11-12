@@ -767,7 +767,8 @@ void print(vector<string> &d, int aflag,int lflag, int Rflag, int args, int &wid
 
 bool find(vector<string> a, string p) {
     bool found = false;
-    for (int i = 0; i < a.size(); i++) {
+    int size = a.size();
+    for (int i = 0; i < size; i++) {
         if (a.at(i) == p) {
             found = true;
         }
@@ -834,6 +835,7 @@ void recursion(vector<string> &directories, int aflag, int lflag, int Rflag, int
 
     print(directories, aflag, lflag, Rflag, args, width);
     cout << endl;
+
     directories.erase(directories.begin());
     recursion(directories, aflag, lflag, Rflag, args, width);
 }
@@ -882,7 +884,7 @@ int main(int argc, char* argv[]) {
             lflag = 1;
             Rflag = 1;
         }
-        else if (argv[i][0] != '.') {
+        else if (i != 0) {
             dandf.push_back(argv[i]);
         }
     }
