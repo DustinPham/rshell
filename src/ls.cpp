@@ -783,6 +783,16 @@ void recursion(vector<string> &directories, int aflag, int lflag, int Rflag, int
     struct stat s;
     string temp;
 
+    if (lstat(directories.at(0).c_str(), &s) == -1) {
+        perror("Error with stat");
+        exit(1);
+    }
+
+    if (S_ISREG(s.st_mode)) {
+        cout << directories.at(0) << endl;
+        return;
+    }
+
     DIR *dirp = opendir((directories.at(0)).c_str());
     if (dirp == '\0') {
         perror("Error with opendir");
@@ -810,7 +820,7 @@ void recursion(vector<string> &directories, int aflag, int lflag, int Rflag, int
             continue;
         }
 
-        if (stat(temp.c_str(), &s) == -1) {
+        if (lstat(temp.c_str(), &s) == -1) {
             perror("Error with stat");
             exit(1);
         }
