@@ -16,6 +16,7 @@ How to run
 2. `cd rshell`
 3. `make`
 4. Run either RShell or ls
+
 Running RShell:
 * `bin/rshell`
 
