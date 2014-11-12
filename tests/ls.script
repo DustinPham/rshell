@@ -1,0 +1,1814 @@
+Script started on Tue 11 Nov 2014 08:19:14 PM PST
+~
+dpham008@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.                               |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cs [K[Kd cs100/rshell
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m make
+if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+g++ -Wall -Werror -ansi -pedantic src/main.cpp -o bin/rshell
+g++ -Wall -Werror -ansi -pedantic src/cp.cpp -o bin/cp
+g++ -Wall -Werror -ansi -pedantic src/ls.cpp -o bin/ls
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls 
+LICENSE              Makefile             README.md            [1;34msrc                 [0;00m
+[1;34mtests               [0;00m [1;34mbin                 [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls ..
+[1;34mfirstrepo           [0;00m [1;34mrshell              [0;00m [1;34mlabs                [0;00m [1;34mrshell-1            [0;00m
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls ../..
+[1;34mDesktop             [0;00m [1;34mDownloads           [0;00m [1;34mTemplates           [0;00m [1;34mPublic              [0;00m
+[1;34mDocuments           [0;00m [1;34mMusic               [0;00m [1;34mPictures            [0;00m [1;34mVideos              [0;00m
+[1;32massignments-backupB6j1W6[0;00m [1;32massignments-backupatX3Aa[0;00m [1;32mtmpF8CL4d           [0;00m [1;34minstall             [0;00m
+[1;34mcs100               [0;00m [1;34mcs61                [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls ../..[K[K[K[K
+LICENSE              Makefile             README.md            [1;34msrc                 [0;00m
+[1;34mtests               [0;00m [1;34mbin                 [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls .[Ksrc
+main.cpp             [1;32ma.out               [0;00m cp.cpp               [1;34mtesting             [0;00m
+Timer.h              ls.cpp               abc                  [1;36mpolarlink           [0;00m
+[1;34mpolar               [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src -R
+src:
+main.cpp             [1;32ma.out               [0;00m cp.cpp               [1;34mtesting             [0;00m
+Timer.h              ls.cpp               abc                  [1;36mpolarlink           [0;00m
+[1;34mpolar               [0;00m 
+src/polar:
+
+src/testing:
+tester               [1;34mtesting2            [0;00m 
+src/testing/testing2:
+tester2             
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src -R[K -R [Kl
+src:
+total 16
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+src/polar:
+
+src/testing:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+src/testing/testing2:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src -Rl[K[K -Rla
+src:
+total 8
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.hide[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+src/.hide:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/polar:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/testing:
+total 8
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.hidden[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+src/testing/.hidden:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+
+src/testing/testing2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src -Rla[K[K -l -a
+src:
+total 8
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.hide[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+src/.hide:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/polar:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/testing:
+total 8
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.hidden[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+src/testing/.hidden:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+
+src/testing/testing2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src -R -l -a[C[C[1P[1P[1P[1P[C[C[C[C[C[C[C[C src
+src:
+total 8
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.hide[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+src/.hide:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/polar:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/testing:
+total 8
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.hidden[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+src/testing/.hidden:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+
+src/testing/testing2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -R -l -a src[K[K[K[K[K[K[K[K[K[Kl
+.:
+total 8
+-rw------- 1 dpham008 csmajs  1521 Nov  4 15:49 LICENSE
+-rw------- 1 dpham008 csmajs   428 Nov 11 19:29 Makefile
+-rw------- 1 dpham008 csmajs  2078 Nov 11 19:40 README.md
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;34msrc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mtests[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mbin[0;00m
+
+./bin:
+total 32
+-rwx------ 1 dpham008 csmajs 15376 Nov 11 20:18 [1;32mrshell[0;00m
+-rwx------ 1 dpham008 csmajs 20912 Nov 11 20:18 [1;32mcp[0;00m
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:18 [1;32mls[0;00m
+
+./src:
+total 16
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+./src/polar:
+
+./src/testing:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+./src/testing/testing2:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+./tests:
+total 24
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs     0 Nov 11 20:18 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -Rla
+.:
+total 8
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov  4 15:56 [1;100;34m..[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.git[0;00m
+-rw------- 1 dpham008 csmajs  1521 Nov  4 15:49 LICENSE
+-rw------- 1 dpham008 csmajs   428 Nov 11 19:29 Makefile
+-rw------- 1 dpham008 csmajs  2078 Nov 11 19:40 README.md
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;34msrc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mtests[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mbin[0;00m
+
+./bin:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rwx------ 1 dpham008 csmajs 15376 Nov 11 20:18 [1;32mrshell[0;00m
+-rwx------ 1 dpham008 csmajs 20912 Nov 11 20:18 [1;32mcp[0;00m
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:18 [1;32mls[0;00m
+
+./.git:
+total 8
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+drwx------ 5 dpham008 csmajs  4096 Oct 18 01:26 [1;34mrefs[0;00m
+-rw------- 1 dpham008 csmajs    73 Oct 18 01:26 description
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34minfo[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34mhooks[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34mbranches[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;34mobjects[0;00m
+-rw------- 1 dpham008 csmajs    19 Nov 11 19:41 HEAD
+-rw------- 1 dpham008 csmajs   377 Nov  4 15:41 config
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;34mlogs[0;00m
+-rw------- 1 dpham008 csmajs   173 Oct 18 01:26 packed-refs
+-rw------- 1 dpham008 csmajs    28 Nov 11 20:09 COMMIT_EDITMSG
+-rw------- 1 dpham008 csmajs   648 Nov 11 20:09 index
+-rw------- 1 dpham008 csmajs   314 Nov 11 18:51 FETCH_HEAD
+-rw------- 1 dpham008 csmajs    41 Nov 11 19:40 ORIG_HEAD
+
+./.git/branches:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m..[0;00m
+
+./.git/hooks:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs  1348 Oct 18 01:26 pre-push.sample
+-rwx------ 1 dpham008 csmajs  3611 Oct 18 01:26 [1;32mupdate.sample[0;00m
+-rwx------ 1 dpham008 csmajs  1239 Oct 18 01:26 [1;32mprepare-commit-msg.sample[0;00m
+-rwx------ 1 dpham008 csmajs  4951 Oct 18 01:26 [1;32mpre-rebase.sample[0;00m
+-rwx------ 1 dpham008 csmajs  1704 Oct 18 01:26 [1;32mpre-commit.sample[0;00m
+-rwx------ 1 dpham008 csmajs   398 Oct 18 01:26 [1;32mpre-applypatch.sample[0;00m
+-rwx------ 1 dpham008 csmajs   452 Oct 18 01:26 [1;32mapplypatch-msg.sample[0;00m
+-rwx------ 1 dpham008 csmajs   189 Oct 18 01:26 [1;32mpost-update.sample[0;00m
+-rwx------ 1 dpham008 csmajs   896 Oct 18 01:26 [1;32mcommit-msg.sample[0;00m
+
+./.git/info:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs   240 Oct 18 01:26 exclude
+
+./.git/logs:
+total 8
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m..[0;00m
+drwx------ 4 dpham008 csmajs  4096 Oct 18 01:26 [1;34mrefs[0;00m
+-rw------- 1 dpham008 csmajs  8236 Nov 11 20:09 HEAD
+
+./.git/logs/refs:
+total 8
+drwx------ 4 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;34mremotes[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:41 [1;34mheads[0;00m
+
+./.git/logs/refs/heads:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:41 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs  1093 Nov 11 19:40 master
+-rw------- 1 dpham008 csmajs  2627 Nov  3 11:21 exec
+-rw------- 1 dpham008 csmajs  2556 Nov 11 20:09 ls
+
+./.git/logs/refs/remotes:
+total 8
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34morigin[0;00m
+
+./.git/logs/refs/remotes/origin:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs   183 Oct 18 01:26 HEAD
+-rw------- 1 dpham008 csmajs  1768 Nov  3 11:21 exec
+-rw------- 1 dpham008 csmajs  1375 Nov 11 19:40 master
+-rw------- 1 dpham008 csmajs  1913 Nov 11 20:09 ls
+
+./.git/objects:
+total 16
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m..[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34mpack[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34minfo[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;34m8a[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34m6c[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:29 [1;34md5[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m64[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 20 19:40 [1;34m2d[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34mef[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:11 [1;34mda[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:57 [1;34m20[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34me6[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m5b[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34m87[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m33[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34mbb[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:06 [1;34m98[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34m26[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34me5[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:44 [1;34mb3[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m58[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;34mdb[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m0d[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:54 [1;34mfd[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m75[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 18 17:09 [1;34m37[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:53 [1;34mc4[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 20 19:41 [1;34m4c[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 20 19:41 [1;34mce[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 20 20:36 [1;34m54[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34mdd[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 20 20:36 [1;34m2e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;34m05[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;34md3[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:47 [1;34mcd[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 01:09 [1;34mf2[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34mfa[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 20:09 [1;34md6[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34ma2[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 20:09 [1;34mfe[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:05 [1;34m38[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:05 [1;34m43[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m3e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:05 [1;34m9b[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 22:30 [1;34m66[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 22:30 [1;34mde[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:50 [1;34m90[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m52[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34mbe[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 22:30 [1;34mf5[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:28 [1;34m83[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m39[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m2f[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34mdc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:10 [1;34mee[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:11 [1;34m67[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:11 [1;34mfb[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34maa[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34mec[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:43 [1;34m5f[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:35 [1;34mad[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:07 [1;34mb0[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m0c[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m40[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34me8[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m4d[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m46[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34mac[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34mb6[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m0e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m1e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m13[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m15[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m3f[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34me3[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34mc6[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m32[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34ma9[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34md4[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34mfc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m6f[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34m7f[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34mf1[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  3 11:21 [1;34m5d[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34mf4[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m80[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m45[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:54 [1;34m5c[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m77[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m81[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m22[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;34ma6[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m09[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m4f[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:53 [1;34mf0[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34me1[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34mca[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:46 [1;34mf8[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m88[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34meb[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34me9[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m8b[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;34m71[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;34m34[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:43 [1;34m12[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:43 [1;34mb2[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:47 [1;34m03[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:50 [1;34m6e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;34mcc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;34m28[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:14 [1;34m56[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:46 [1;34md2[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:14 [1;34m29[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m01[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:57 [1;34mae[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:57 [1;34mab[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m3b[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34mc0[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m7a[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m31[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m97[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m11[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34mbd[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34ma4[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m92[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m55[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m9e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:35 [1;34m7b[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m7e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;34m72[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:44 [1;34m4e[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:34 [1;34m84[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;34m79[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;34m74[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;34mf6[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;34m3c[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;34mc5[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;34m19[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:49 [1;34m1c[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:50 [1;34m0f[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:53 [1;34m17[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:29 [1;34m82[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:38 [1;34m73[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:38 [1;34m95[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:38 [1;34mc3[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;34m1b[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;34md7[0;00m
+
+./.git/objects/01:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   205 Nov  8 19:14 a2b8918e653ec177322171a356eaefa37c9d4b
+-r-------- 1 dpham008 csmajs   219 Nov 11 17:40 a0f52424b50db1428add779f27e3fc8f9b02e2
+
+./.git/objects/03:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:47 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   178 Nov  4 15:47 cfc6c27071b43acb587dfff4d626f07f7ad980
+
+./.git/objects/05:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   164 Oct 20 20:36 ff721b3fefd681af970f77bd915ba0f0dbef77
+-r-------- 1 dpham008 csmajs  3848 Nov 11 20:09 f535919baba2b2652cde4c994b2b0512ad6f07
+
+./.git/objects/09:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov  4 15:38 f84510aa1c7b9c1c621cf8d13df187600c9f9a
+
+./.git/objects/0c:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 27 08:08 d9b277d322dc3d79d1d66a28e3c5e4c2403a22
+-r-------- 1 dpham008 csmajs  3806 Nov 11 15:57 e4fcdd433b61c59098f83de75b23adc7b1dc1c
+-r-------- 1 dpham008 csmajs   112 Nov 11 17:40 49edd2492f17926f9afc807b2f729a8e24dd6f
+
+./.git/objects/0d:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   490 Oct 18 17:09 cb096d6b0014f7c86ef36d37888b515e803113
+-r-------- 1 dpham008 csmajs   212 Oct 27 08:08 8bc8e3eceb96e6391fa3b42cad8e24e2c685a1
+-r-------- 1 dpham008 csmajs   113 Nov 11 17:40 4a280424fe861a49cbf620f25ea9adcd5f8896
+
+./.git/objects/0e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   163 Oct 27 08:08 d0e8689b060b4dfd0458c71d8abd55b1a3940a
+-r-------- 1 dpham008 csmajs   112 Nov 11 17:40 c89f7de65acbcbe99fdf690d3aded2e108d84f
+
+./.git/objects/0f:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:50 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   155 Nov 11 18:50 dbeeb4f17c98bcd59e4118da0f558713388b45
+
+./.git/objects/11:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   240 Nov 11 17:40 513064f3a9ff4c1ae49c83945b93b4fbe6a5b5
+
+./.git/objects/12:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:43 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov  4 15:43 b7a226acba7d809a06c02605cd5b50a2e225a8
+
+./.git/objects/13:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Oct 27 08:08 33624c73b4e7660324f7c7b317edb38e407331
+
+./.git/objects/15:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   163 Oct 27 08:08 7a55f83469f398ceed3a3cf74fb6418ddaa275
+
+./.git/objects/17:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:53 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   161 Nov 11 18:53 e19d67f3459431cdd6e6313629a8260bf7b2ca
+
+./.git/objects/19:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   214 Nov 11 17:55 f747abe6ad3be8a079ce14a315c872ce2f6b5e
+
+./.git/objects/1b:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   139 Nov 11 20:09 363fc842b79324617422b43ddffc3c3b37d14d
+
+./.git/objects/1c:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:49 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  3814 Nov 11 18:49 23ae49e363f527432ffbeafe0531224180a0a1
+
+./.git/objects/1e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   162 Oct 27 08:08 82ef47e57499e2e35b974ca46d58ce55e81175
+
+./.git/objects/20:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:57 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   101 Oct 18 01:26 7e46a65b3ebdf7f3dc887214390fb2a172fdcc
+-r-------- 1 dpham008 csmajs   177 Oct 27 08:08 fb5a1dffe517e835dcf761e60663953266f95e
+-r-------- 1 dpham008 csmajs   858 Oct 27 08:08 962bd3137568f5aa76bac6ff72d7a22f8478fa
+-r-------- 1 dpham008 csmajs   140 Nov 11 15:57 e1330d7dedec5d1c1af9fd0a1dfa392f8eab96
+
+./.git/objects/22:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   163 Nov  4 15:38 c9b88bf20b4e0ed4e0d496be09597f1a318267
+
+./.git/objects/26:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 18 01:26 97979e058f981b0682ee91ff6583167ffedcc3
+
+./.git/objects/28:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   178 Nov  8 19:13 4eda3106807d35802503c7c0e65bd955048782
+
+./.git/objects/29:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:14 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   178 Nov  8 19:14 b6c6b1689a0478015af296074f53d289e68b28
+
+./.git/objects/2d:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 20 19:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   168 Oct 18 01:26 cc1c7ed0a16e982d48e365f924579bf40c0a97
+-r-------- 1 dpham008 csmajs   939 Oct 20 19:40 46d4d3dfee119dcb8d15e4b5cdf4e5a939f771
+
+./.git/objects/2e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 20 20:36 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 20 20:36 0a542656d06dc3543b721fd36dea73c4767fb0
+
+./.git/objects/2f:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   174 Oct 21 22:31 d5c50e96783960054d86afdadba8578c932fdd
+-r-------- 1 dpham008 csmajs  1245 Nov 11 17:40 38c984b05074811146878515718fe26b5a5c4a
+
+./.git/objects/31:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 334aa5fa6f5e3868e5c297d9df9c906e9eadf8
+
+./.git/objects/32:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   173 Oct 27 08:08 01507174dc883789e1dd2cdad8d92242faa246
+
+./.git/objects/33:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   428 Oct 18 01:26 89a97fc94591ed7a018f40d1dfe374e9025474
+-r-------- 1 dpham008 csmajs   178 Nov  4 15:38 cb8dd96b335b0d1135b52d0e9dd7d1c1fd8aab
+
+./.git/objects/34:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   296 Nov  4 15:43 1e6a1ad5702c45a9933785bb5d8db0cc46301f
+-r-------- 1 dpham008 csmajs   176 Nov 11 17:55 175ff2595cdfa69ee6715f711b374b0b861e56
+
+./.git/objects/37:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 17:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   183 Oct 18 17:09 aad83ab22e9cd5a748db20eba4beb40004dceb
+
+./.git/objects/38:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:05 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 21 21:05 5dc2a71d046400a629b6f95ba26c83ada9310a
+
+./.git/objects/39:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    96 Oct 21 22:31 772bb4db8ed11ff0759e0624199be9ad5a3a33
+-r-------- 1 dpham008 csmajs    80 Nov  4 15:38 b3e5357506e0d1277e6bafbc8c496eca734576
+-r-------- 1 dpham008 csmajs  1212 Nov 11 17:40 2d8acfe7494c9e275dd4a194f5bef8dd9b087b
+
+./.git/objects/3b:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 60cfd642f7123988d3ba9895a7394740bf05c2
+
+./.git/objects/3c:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  1298 Nov 11 17:55 03267c80c9e5f260b97b790d06727f9ba56fab
+
+./.git/objects/3e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   165 Oct 21 21:05 ba396fc3ddcc6eddd145d73e615efc154e4ca8
+-r-------- 1 dpham008 csmajs   166 Oct 27 08:08 0560a36d80b1b4a8cef543aad8ebcf8ba4bc81
+-r-------- 1 dpham008 csmajs   247 Nov  4 15:38 d868da2bb95390a3a7459ed9b8f763e45c42dd
+
+./.git/objects/3f:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Oct 27 08:08 a4223e3ee50136f628d647fae791d4f586cca5
+-r-------- 1 dpham008 csmajs   178 Nov 11 17:40 67180b5c74ab946ecc372c9a2a04a531e80a16
+
+./.git/objects/40:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   174 Oct 27 08:08 07df379e0571c9a923c8ed67ed2b4e4290032c
+
+./.git/objects/43:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:05 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 21 21:05 b5ab6d5485568283a01d0a9f6e9d061221f388
+
+./.git/objects/45:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   220 Nov  4 15:38 d03d89d5686116670058b18c78fc946661b29b
+
+./.git/objects/46:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   164 Oct 27 08:08 2a1dc02b71a8bc42616450ea810ee2fc0d2e43
+
+./.git/objects/4c:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 20 19:41 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 20 19:41 f183989afb9cf8555789f6c21890c7ee06ad0a
+
+./.git/objects/4d:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   166 Oct 27 08:08 155a43c6bad86db9b1f0a1118ae4b27f227868
+-r-------- 1 dpham008 csmajs   216 Nov 11 17:40 f3adc440fe2ec3f69725ea054f98d9a8217a3c
+
+./.git/objects/4e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:44 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   169 Nov 11 17:44 88931dcb0e07370ec803576c5941df2277e035
+
+./.git/objects/4f:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   112 Nov  4 15:38 9faad741e4f7ea4c5088d5295fc9cf4bcb1abe
+
+./.git/objects/52:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   166 Oct 21 22:30 334f757767b4b26d2ca826502d3dcf491040cf
+-r-------- 1 dpham008 csmajs   884 Oct 27 08:08 57f8f5f98d1ea5d669ca57e99e56f71033a8f3
+-r-------- 1 dpham008 csmajs   693 Nov  4 15:38 7843c2180e2149ec639a6ff6e86f19c5162d16
+
+./.git/objects/54:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 20 20:36 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   927 Oct 20 20:36 7601d8727a73f56b072cc10b84df792b9e80db
+
+./.git/objects/55:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   178 Nov 11 17:40 cc4e8422c0308255d8098487938567e73d3d8f
+
+./.git/objects/56:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:14 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  2383 Nov  8 19:14 745dc4267f5127b1fcdffbc6e44269160f360a
+
+./.git/objects/58:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    51 Oct 18 01:26 9ef3de03396dcebbff339085233fbd6096226a
+-r-------- 1 dpham008 csmajs   178 Nov 11 17:40 2a0bf2cee70087ad3da3977da7df0c24e3940c
+
+./.git/objects/5b:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    26 Oct 18 01:26 047db65097b7f2853a6952df6e10bc51eb99ab
+-r-------- 1 dpham008 csmajs  1086 Oct 21 22:30 3fdecb063823616790cb0ee38b14c480befdfa
+-r-------- 1 dpham008 csmajs   177 Nov  4 15:38 86219c2a5765f0cd4f44fbf1f85f77ca824206
+
+./.git/objects/5c:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:54 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   165 Nov  4 15:38 90ca05de53db409cd8ce14ef6e7691755804b6
+-r-------- 1 dpham008 csmajs   177 Nov 11 18:54 a15bc720cfced8c928d3661330a651b7ff957c
+
+./.git/objects/5d:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  3 11:21 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   178 Nov  3 11:21 ad93976a3c83f0924da3e2bcd14754c1a20fdd
+
+./.git/objects/5f:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:43 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   174 Oct 21 23:15 3d676057e38e4e9dda3fc14ac9deb1e285b0f4
+-r-------- 1 dpham008 csmajs    80 Nov  4 15:43 2f62d4c695c0bd427ad780ee9b8c1d238811e2
+
+./.git/objects/64:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   163 Oct 18 01:26 2f270a99ccf6b600d5c90534974ef2a2d511f6
+-r-------- 1 dpham008 csmajs   235 Nov 11 17:40 5af62c0837f58514282b48b6c5e9ff1052c74f
+
+./.git/objects/66:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 22:30 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 21 21:06 a934cbdaaa096f93fb7dad1183c6c71bd1dd0b
+-r-------- 1 dpham008 csmajs   134 Oct 21 22:30 c29c990afb5fa6eb55e98fb1f4be21304b9061
+
+./.git/objects/67:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:11 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   174 Oct 21 23:11 b7be1a904859fb6e6d0bbab7f32937915f999f
+
+./.git/objects/6c:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   168 Oct 18 01:26 14747cef9fdfb132540d2ecdd12a977c3d179d
+
+./.git/objects/6e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:50 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   202 Nov  4 15:53 42a3bd240236ec5759aba418d0af9cf36e9af8
+-r-------- 1 dpham008 csmajs   176 Nov 11 18:50 83167b424823dba614dfb53615ddd83b25c1e4
+
+./.git/objects/6f:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   857 Oct 27 08:08 2075b77fd4c389ffc667de7b7368bcd2160442
+
+./.git/objects/71:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    80 Nov  4 15:38 c4440d9bd74026c1bde7a452869edb83de9fa9
+
+./.git/objects/72:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   113 Nov 11 17:40 9bc98e411d213b643f1d87d237e45f3037a739
+
+./.git/objects/73:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  1020 Nov 11 19:38 b8123edcee5d97b591035209cdb8fa5970dca1
+
+./.git/objects/74:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   178 Nov 11 17:55 db0792e9839d606d7f5e1e9be2ff2db0bcb515
+
+./.git/objects/75:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 18 17:09 270429150e899828c36e03a33076208ba6cc5c
+-r-------- 1 dpham008 csmajs  1217 Nov 11 17:40 877ac1a046b82f2e50a1d6bfc1d2ad34e2557b
+
+./.git/objects/77:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   225 Nov  4 15:38 8232892fb11f84afccb40bc878e3404bd11a30
+-r-------- 1 dpham008 csmajs   112 Nov 11 17:40 cbefab972f85108a17c831342defe06d8b15b9
+
+./.git/objects/79:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   165 Nov 11 17:55 213d0f4feaf120bd15606b77d21435d1b62866
+
+./.git/objects/7a:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 91b4955f315789eac07a08032f96336ca13668
+
+./.git/objects/7b:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:35 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   112 Nov 11 17:40 2ff19c60b28c6419dcd00fbfd386d6a737f3b7
+-r-------- 1 dpham008 csmajs   158 Nov 11 19:35 da19ef16d39478235019def0e76d7dd34220a1
+
+./.git/objects/7e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 4d2dee5d82266eac3cf250b03d246b03607549
+
+./.git/objects/7f:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   225 Oct 27 08:08 7ce11371fead50aecdd19d05e572a015e039e5
+
+./.git/objects/80:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   193 Nov  4 15:38 d63d6bd524ecdf3eea0f54f8ea1a35030f47a2
+
+./.git/objects/81:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   188 Nov  4 15:38 8526f9270a9afd3b64f4664ed1f399366c99d1
+-r-------- 1 dpham008 csmajs   228 Nov 11 17:40 2df5b2f709fcd34a266f0044b5cf934e213047
+-r-------- 1 dpham008 csmajs   174 Nov 11 17:40 2e84cbb6637a33cf139fcea73665ddd183f9e3
+
+./.git/objects/82:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:29 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   175 Nov 11 19:29 169e89e94767b1a52186da76dffc6e15ec54f4
+
+./.git/objects/83:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:28 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  2196 Oct 21 22:31 f358356787a37219b7fda0db6d203500ce395d
+-r-------- 1 dpham008 csmajs  1006 Nov 11 19:28 6c995bfab02228dc1951d6ee6fb134e6f664e2
+
+./.git/objects/84:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:34 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   218 Nov 11 17:55 484daa2b1954280bf023c63df1fa96a1be2d0a
+-r-------- 1 dpham008 csmajs  1020 Nov 11 19:34 0fca8204023b00109369f957a7c34853247693
+
+./.git/objects/87:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 18 01:26 90f8cd3546baf7ffdb2883cb83a29bc9beba07
+
+./.git/objects/88:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   178 Nov  4 15:38 2ed99f1652c4d15723f6298427c0362b8ff358
+
+./.git/objects/8a:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   161 Oct 18 01:26 a87c1cb0e3b0498442f0826fc8d89ec15807a8
+-r-------- 1 dpham008 csmajs   223 Oct 27 08:08 305a7d5baa414eb30a7614dd0e5dc6d0b01017
+-r-------- 1 dpham008 csmajs   172 Nov  8 19:13 1d3a7e5f4abd4493c75a3f0bd15de1838cdba3
+
+./.git/objects/8b:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    80 Nov  4 15:38 3f4f6ef8a99b35c61525220ec8cabd059dcce7
+
+./.git/objects/90:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:50 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 21 22:30 7c4bd7185e6b0f92663769579d17f35dcce396
+-r-------- 1 dpham008 csmajs   139 Nov 11 18:50 2b6cd0215f3db4d78bb8cc9ccb67950a4fe5fb
+
+./.git/objects/92:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   163 Nov 11 17:40 1c18f626f287c3168c6cd5331ef84e372dda4a
+
+./.git/objects/95:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov 11 19:38 9aa00ae63ef9d4e4d38baeef14ab871a56d269
+
+./.git/objects/97:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  1356 Nov 11 17:40 d030dda19c7136a05e34981d322a7215b2ac7c
+
+./.git/objects/98:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:06 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 18 01:26 765a0d143587e5088722b3a04901bacde10ce6
+-r-------- 1 dpham008 csmajs  1152 Oct 21 01:08 f82a8507d9d7b4e6ee56fff98aa14a34b3a6c6
+-r-------- 1 dpham008 csmajs   160 Oct 21 21:06 b1f1ae41e66ecc55199c7f8ca8578b35fe2419
+
+./.git/objects/9b:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 21:05 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   135 Oct 21 21:05 9abfd68c9a4704b45728a5f3a24de1cf7a6880
+
+./.git/objects/9e:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  1298 Nov 11 17:40 d9b4f635e3dc5802f60c2c93d2398b804e336d
+
+./.git/objects/a2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 21 20:09 7766d31a58e16b8d44553408567bf724fedb81
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 e45c8957aacad765b1180f8b3c1bff0be66354
+
+./.git/objects/a4:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   187 Nov 11 17:40 b1aba12328f4f36ce36eba48208058b3ce2209
+
+./.git/objects/a6:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   172 Nov  4 15:38 a1efae4f81e49ffd753fc3f9b1a08f46736e5f
+-r-------- 1 dpham008 csmajs  1139 Nov  8 19:13 c74dd43a39d8daec1b8501fb15fb816e3cfa8b
+
+./.git/objects/a9:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   832 Oct 27 08:08 b2d5bb3ae0681a41b5a15eec166c42536585bc
+
+./.git/objects/aa:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   174 Oct 21 23:11 bd71a398a149919a83177e2a75185b4307fd92
+-r-------- 1 dpham008 csmajs   500 Nov  4 15:38 b663ca68c69ee32561050933df60153d475c46
+
+./.git/objects/ab:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:57 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   188 Nov 11 15:57 973a3da4c13bf946529779cf53dded635d7c88
+
+./.git/objects/ac:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   165 Oct 27 08:08 5317bb544fe613f2ae1981d109b9fe74c503a5
+-r-------- 1 dpham008 csmajs   177 Oct 27 08:08 dff019f2973d077c76c0f2e6bdcd319a69a551
+
+./.git/objects/ad:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:35 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   229 Oct 21 23:15 37dc1e9b4f634fc3c8d945e9474774fd596821
+-r-------- 1 dpham008 csmajs   176 Nov 11 17:46 d385a3dbd7e2196161b10f88336ba25753d134
+-r-------- 1 dpham008 csmajs   177 Nov 11 19:35 80853861666e41aec09d79b2348a78b5168074
+
+./.git/objects/ae:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:57 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov 11 15:57 27473686d2f0fd6ce603ce5caa2b2788178c10
+
+./.git/objects/b0:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:07 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  1143 Oct 27 08:07 063dd5682d91bcf1a673cb042bdbd1717cba60
+
+./.git/objects/b2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:43 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   160 Nov  4 15:43 4b54cad20d6a9d3251d77bf781880668c0b0fb
+
+./.git/objects/b3:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:44 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    82 Oct 18 01:26 3762b29013dc60b24970386a2d4d9136c33d2b
+-r-------- 1 dpham008 csmajs  1076 Oct 21 21:05 ca17df22362d87a9e7a4f57fd6600cc6427cdf
+-r-------- 1 dpham008 csmajs   177 Oct 27 08:08 27be2835c6f2f01f354b69a9965e3f540a5150
+-r-------- 1 dpham008 csmajs   176 Nov 11 17:44 6f34a78b0f22d6f0f968fd513a8a8d36452a2d
+
+./.git/objects/b6:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   167 Oct 27 08:08 1bdcb9b0bd408cb9ffff83a86ed9de5e6d75ee
+
+./.git/objects/bb:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   115 Oct 18 01:26 a0de99796169f8f30f4a06c3b8bd4cbac86e0d
+
+./.git/objects/bd:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   183 Nov 11 17:40 71856aae6e6701aa204f4dc7f5ca2a5a584093
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 530751949230459230553119b37ded8595c901
+
+./.git/objects/be:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 21 22:30 8cbcc6a868d3b15d87888b4f51cdcb716bced3
+-r-------- 1 dpham008 csmajs   158 Nov 11 17:40 78f7998ad0e954ed1ad455463b37ce46a893fe
+
+./.git/objects/c0:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 e70e2e3165dc532c6af51b1e2e8830cb90f000
+
+./.git/objects/c3:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   160 Nov 11 19:38 6c2c24e3b84c9f0c5a6ea444bd59930b895bc6
+
+./.git/objects/c4:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:53 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 20 19:41 df8231d03b8979bacc2cdb2e55a97cb89a32b1
+-r-------- 1 dpham008 csmajs   139 Nov  4 15:53 deb136a085a75b07e0ed22bedec852e69cc662
+
+./.git/objects/c5:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   140 Nov 11 17:55 a050897e0c5c3c3ffb145cc3e00a78caa4bd96
+
+./.git/objects/c6:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   174 Oct 27 08:08 bb34842ebb49fde5c7d2c0f4a140fee8b8328d
+
+./.git/objects/ca:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   891 Nov  4 15:38 7f4bfd79d8f85862be2d11135d5e2034a76f70
+
+./.git/objects/cc:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 19:13 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   139 Nov  8 19:13 6a350c3648d49d4347ebf1311cf393d661b3bc
+
+./.git/objects/cd:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:47 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   145 Oct 21 01:09 2bf856348359f2ff19fb4183994fdcf7c9baaf
+-r-------- 1 dpham008 csmajs   228 Nov  4 15:47 ce36e8738decdbc838df4a110112b56024b3b9
+
+./.git/objects/ce:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 20 19:41 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   182 Oct 20 19:41 6197d7350e170f272a6d170531b8b9c19b314a
+
+./.git/objects/d2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:46 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   139 Nov  8 19:14 e8c43a722f3d0b6fdca9c0261178fc71b65aac
+-r-------- 1 dpham008 csmajs   173 Nov 11 17:44 f6f268f4613b8608f865bb7ee896c6194f239c
+-r-------- 1 dpham008 csmajs   724 Nov 11 17:46 b3689c02373163537526daf1d93043364407c4
+
+./.git/objects/d3:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 21 01:09 c9420ad67cf9dcb748284a0422e7ca1e494e32
+-r-------- 1 dpham008 csmajs   177 Nov 11 20:09 d1d12e769131248e30096dae346f444d76ef1b
+
+./.git/objects/d4:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   859 Oct 27 08:08 d2fad0fb7b2b23adf985ffe097be56922f435c
+-r-------- 1 dpham008 csmajs  1207 Nov 11 17:40 e84d2e5fe568c3fd9d05786fc74444162a320c
+
+./.git/objects/d5:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 19:29 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   169 Oct 18 01:26 251ce427e76c4d58c67c787355263d47af36f3
+-r-------- 1 dpham008 csmajs   177 Nov 11 19:29 6c1c14e46f42f713d9d251520bb28b96efb715
+
+./.git/objects/d6:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 20:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 21 20:09 49cef06a21713c09deedbb04e5f2ac967d0b89
+
+./.git/objects/d7:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   174 Nov 11 20:09 301718b31ad582c6360fb9ede17383251d65e8
+
+./.git/objects/da:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:11 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   146 Oct 18 01:26 0df857f5ab58fde7b8716f5d983d1fed232c49
+-r-------- 1 dpham008 csmajs   168 Oct 21 23:11 78cc835facc95c19b28cc02bd0639be561fe05
+
+./.git/objects/db:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    54 Oct 18 01:26 f4918e70f099fedfc58ef4cb40158b7b9a74e5
+
+./.git/objects/dc:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   162 Oct 21 22:31 7515e8091d4c36c30dfa524934735a4c7ae7e4
+-r-------- 1 dpham008 csmajs   162 Oct 27 08:08 dca93c0da186d43b228c270900c8a90ea3ea84
+
+./.git/objects/dd:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    52 Oct 20 20:36 6d80b4783f279bc25e63fcd59df3b59a4b39a8
+-r-------- 1 dpham008 csmajs   211 Nov  4 15:38 bbdcc2d311fe63e71a8b6a79cb8a8c45f38719
+
+./.git/objects/de:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 22:30 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    53 Oct 21 22:30 2ad89bfd7f3612bf40aa8d7bb8f779c33764a7
+
+./.git/objects/e1:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   865 Nov  4 15:38 33a3cda656f8500bd31a82a35b1a3569c3b47f
+
+./.git/objects/e3:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Oct 27 08:08 ea303d64eeea17f288e546dd25d56bbf914893
+-r-------- 1 dpham008 csmajs   164 Nov  4 15:38 112b67b1829c17c4716d0fa5c45180b6919d04
+
+./.git/objects/e5:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   104 Oct 18 01:26 52e6f63b7fdab5642ac4b54a1c768bd8132500
+-r-------- 1 dpham008 csmajs   112 Nov  4 15:38 5446c9c0d31a548c08a2cea19ac907a37262d7
+
+./.git/objects/e6:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    15 Oct 18 01:26 9de29bb2d1d6434b8b29ae775ad8c2e48c5391
+
+./.git/objects/e8:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   224 Oct 27 08:08 a31d36302e6c361863f38c77e9f9aa460e14f6
+
+./.git/objects/e9:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   177 Nov  4 15:38 9ade03fea63ecf1cf17b6bea76315abd50839f
+
+./.git/objects/eb:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   112 Nov  4 15:38 fec5e7927a1a11a9222ba4d8a04705c24ed8e4
+
+./.git/objects/ec:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    56 Oct 21 23:11 b85075f8cfd164ae130e9ca16f1f7a0d8c3fc9
+-r-------- 1 dpham008 csmajs   182 Nov 11 17:40 4ccd5d278df93ea4c7bc4f17b9f6888352dfe9
+
+./.git/objects/ee:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:10 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   856 Oct 21 23:10 8094f4a71a8c75b854b5dbcd9ff84ed47069d0
+
+./.git/objects/ef:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   133 Oct 18 01:26 0a7b19888f00c667b7db796596322c1dd4f128
+
+./.git/objects/f0:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:53 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   758 Nov  4 15:38 7b89356cf7c3ecc81c403d10b7ed2cfdc1fac8
+-r-------- 1 dpham008 csmajs   178 Nov  4 15:53 61e663f9a2456c7a25b75883cfe0e596fda295
+
+./.git/objects/f1:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:40 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   146 Nov  3 11:20 b97b48f9dbd017ac5dfca68acf39ceb3a7f2b7
+-r-------- 1 dpham008 csmajs   177 Nov 11 17:40 81a06fa113b4926dc8d02c97c88fbd013985a7
+
+./.git/objects/f2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 01:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   173 Oct 21 01:09 6e9ffa8f3dfb75d3b764f6897ffeafbd84f837
+
+./.git/objects/f4:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   171 Nov  3 11:21 566b492a615271e7c08c7ad90864c06fba6f7d
+-r-------- 1 dpham008 csmajs   177 Nov  4 15:38 bb0c5b96bebb9cabe85cc12c77452903bff60a
+
+./.git/objects/f5:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 22:30 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   162 Oct 21 22:30 2033e50dee50c809f0dcdf9f37d9687663e2ec
+
+./.git/objects/f6:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:55 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   112 Nov 11 17:55 79cbce293caf2a51fd59b0c1cdd59fa4cb6106
+-r-------- 1 dpham008 csmajs   178 Nov 11 17:55 878458d7e70cdc00b5277d0e590d90c2104039
+
+./.git/objects/f8:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 17:46 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   889 Nov  4 15:38 5fd2030102af623f3aa8b1795ce58c9938dbc3
+-r-------- 1 dpham008 csmajs   162 Nov 11 17:46 cee8cae0d76596f179e05b6bb60cea6c3b8eb1
+
+./.git/objects/fa:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  4 15:38 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs  1050 Oct 21 20:08 a641903fa35ef6ce70bf372feee90867b88ef8
+-r-------- 1 dpham008 csmajs   228 Nov  4 15:38 1d935ef60069cc32ffb251a61437bcbf904026
+
+./.git/objects/fb:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 23:11 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   166 Oct 21 23:11 c5563ec6bf08847d100a285ee0f6a05255df93
+
+./.git/objects/fc:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   859 Oct 27 08:08 71091c5c65dfb584950a1a36ef21b0884884df
+
+./.git/objects/fd:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 18:54 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs    52 Oct 18 17:09 e7a9e4d63022d62f042a3ec3d3cfc564885a60
+-r-------- 1 dpham008 csmajs   163 Nov 11 18:54 426571cf1efce844c1e9e2898daf7fc6971140
+
+./.git/objects/fe:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 21 20:09 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+-r-------- 1 dpham008 csmajs   162 Oct 21 20:09 cf3f6592b95f2ef64809d5836d0cb37e8f64b9
+
+./.git/objects/info:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+
+./.git/objects/pack:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 148 dpham008 csmajs  8192 Nov 11 20:09 [1;100;34m..[0;00m
+
+./.git/refs:
+total 8
+drwx------ 5 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m..[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;34mheads[0;00m
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;34mtags[0;00m
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;34mremotes[0;00m
+
+./.git/refs/heads:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs    41 Nov 11 19:40 master
+-rw------- 1 dpham008 csmajs    41 Nov  3 11:21 exec
+-rw------- 1 dpham008 csmajs    41 Nov 11 20:09 ls
+
+./.git/refs/remotes:
+total 8
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;34morigin[0;00m
+
+./.git/refs/remotes/origin:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.[0;00m
+drwx------ 3 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs    32 Oct 18 01:26 HEAD
+-rw------- 1 dpham008 csmajs    41 Nov  3 11:21 exec
+-rw------- 1 dpham008 csmajs    41 Nov 11 19:40 master
+-rw------- 1 dpham008 csmajs    41 Nov 11 20:09 ls
+
+./.git/refs/tags:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Oct 27 08:08 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Oct 18 01:26 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs    41 Oct 27 08:08 hw0
+
+./src:
+total 8
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.hide[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+./src/.hide:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+./src/polar:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+./src/testing:
+total 8
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.hidden[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+./src/testing/.hidden:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+
+./src/testing/testing2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+./tests:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m sr[K[Kbin/ls -Rla[1Pla
+total 8
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov  4 15:56 [1;100;34m..[0;00m
+drwx------ 8 dpham008 csmajs  4096 Nov 11 20:09 [1;100;34m.git[0;00m
+-rw------- 1 dpham008 csmajs  1521 Nov  4 15:49 LICENSE
+-rw------- 1 dpham008 csmajs   428 Nov 11 19:29 Makefile
+-rw------- 1 dpham008 csmajs  2078 Nov 11 19:40 README.md
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;34msrc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mtests[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mbin[0;00m
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -la[K[K[K[K
+LICENSE              Makefile             README.md            [1;34msrc                 [0;00m
+[1;34mtests               [0;00m [1;34mbin                 [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src/main.cpp
+src/main.cpp         
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src/main.cpp src -l
+src:
+total 16
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+-rw------- 1 dpham008 csmajs 7965 Nov 11 18:51 src/main.cpp
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src/main.cpp src -l[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-R
+.:
+LICENSE              Makefile             README.md            [1;34msrc                 [0;00m
+[1;34mtests               [0;00m [1;34mbin                 [0;00m 
+./bin:
+[1;32mrshell              [0;00m [1;32mcp                  [0;00m
+[1;32mls                  [0;00m 
+./src:
+main.cpp             [1;32ma.out               [0;00m cp.cpp              
+[1;34mtesting             [0;00m Timer.h              ls.cpp               abc                 
+[1;36mpolarlink           [0;00m [1;34mpolar               [0;00m 
+./src/polar:
+
+./src/testing:
+tester               [1;34mtesting2            [0;00m
+
+./src/testing/testing2:
+tester2              
+./tests:
+exec.script          ls.script            
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -R[K-l [K[K[Kl -a[KR
+.:
+total 8
+-rw------- 1 dpham008 csmajs  1521 Nov  4 15:49 LICENSE
+-rw------- 1 dpham008 csmajs   428 Nov 11 19:29 Makefile
+-rw------- 1 dpham008 csmajs  2078 Nov 11 19:40 README.md
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;34msrc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mtests[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mbin[0;00m
+
+./bin:
+total 32
+-rwx------ 1 dpham008 csmajs 15376 Nov 11 20:18 [1;32mrshell[0;00m
+-rwx------ 1 dpham008 csmajs 20912 Nov 11 20:18 [1;32mcp[0;00m
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:18 [1;32mls[0;00m
+
+./src:
+total 16
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+./src/polar:
+
+./src/testing:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+./src/testing/testing2:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+./tests:
+total 24
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -l -R [K[K[K[K[Kr -l[K[K[K[KR -l
+.:
+total 8
+-rw------- 1 dpham008 csmajs  1521 Nov  4 15:49 LICENSE
+-rw------- 1 dpham008 csmajs   428 Nov 11 19:29 Makefile
+-rw------- 1 dpham008 csmajs  2078 Nov 11 19:40 README.md
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;34msrc[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mtests[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;34mbin[0;00m
+
+./bin:
+total 32
+-rwx------ 1 dpham008 csmajs 15376 Nov 11 20:18 [1;32mrshell[0;00m
+-rwx------ 1 dpham008 csmajs 20912 Nov 11 20:18 [1;32mcp[0;00m
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:18 [1;32mls[0;00m
+
+./src:
+total 16
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+./src/polar:
+
+./src/testing:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+./src/testing/testing2:
+total 0
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+./tests:
+total 24
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -R -l a[K-a[K[K[K[K[K[K[Ka
+[1;100;34m.                   [0;00m [1;100;34m..                  [0;00m [1;100;34m.git                [0;00m LICENSE             
+Makefile             README.md            [1;34msrc                 [0;00m [1;34mtests               [0;00m
+[1;34mbin                 [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -a[K[KMakefile
+Makefile             
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls Makefile[K[K[K[K[K[K[K[KREADME.md MA[Kakefile
+Makefile             README.md            
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls README.md Makefile tests
+Makefile             README.md            tests:
+exec.script          ls.script           
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls README.md Makefile tests[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-R src/main.cpp src
+src:
+main.cpp             [1;32ma.out               [0;00m cp.cpp               [1;34mtesting             [0;00m
+Timer.h              ls.cpp               abc                  [1;36mpolarlink           [0;00m
+[1;34mpolar               [0;00m 
+src/main.cpp
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls -R src/main.cpp srcREADME.md Makefile tests[K[10PMakefile-a[KR -l[K[K[K[K[K
+LICENSE              Makefile             README.md            [1;34msrc                 [0;00m
+[1;34mtests               [0;00m [1;34mbin                 [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests .[K-Rl[K -l -A[Ka
+tests:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests -R -l -a[1Pa[1Pa
+tests:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests -R -la[1Pla[1Pla
+tests:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests -Rla[C[K[K[Kalr
+Error with stat: No such file or directory
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests -alr[KR
+tests:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests -alR[K[K[Klar[KR
+tests:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests -laR R-R
+tests:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs 11208 Nov  4 15:49 exec.script
+-rw------- 1 dpham008 csmajs 65536 Nov 11 20:21 ls.script
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls tests -la -R[Kbin/ls tests -la -R[1P[1P[1P[1P[1P[4hb[4l[4hi[4l[4hn[4l
+bin:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 20:18 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rwx------ 1 dpham008 csmajs 15376 Nov 11 20:18 [1;32mrshell[0;00m
+-rwx------ 1 dpham008 csmajs 20912 Nov 11 20:18 [1;32mcp[0;00m
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:18 [1;32mls[0;00m
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls bin -la -R[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kbin/ls tests -la -R[K[K[K[K[K[K[K[K[K[K[K[K
+LICENSE              Makefile             README.md            [1;34msrc                 [0;00m
+[1;34mtests               [0;00m [1;34mbin                 [0;00m 
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m bin/ls src -laR
+src:
+total 8
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m.[0;00m
+drwx------ 6 dpham008 csmajs  4096 Nov 11 19:52 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs  7965 Nov 11 18:51 main.cpp
+-rwx------ 1 dpham008 csmajs 64315 Nov 11 20:08 [1;32ma.out[0;00m
+-rw------- 1 dpham008 csmajs  4601 Nov 11 18:51 cp.cpp
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting[0;00m
+-rw------- 1 dpham008 csmajs  2700 Nov  4 15:53 Timer.h
+-rw------- 1 dpham008 csmajs 33144 Nov 11 20:08 ls.cpp
+-rw------- 1 dpham008 csmajs     0 Nov 10 19:57 abc
+lrwxrwxrwx 1 dpham008 csmajs     5 Nov 10 11:54 [1;36mpolarlink[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.hide[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;34mpolar[0;00m
+
+src/.hide:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov 11 15:06 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/polar:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 20:51 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+
+src/testing:
+total 8
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 5 dpham008 csmajs  4096 Nov 11 20:08 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  7 15:35 tester
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.hidden[0;00m
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;34mtesting2[0;00m
+
+src/testing/.hidden:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  7 16:26 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+
+src/testing/testing2:
+total 8
+drwx------ 2 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m.[0;00m
+drwx------ 4 dpham008 csmajs  4096 Nov  8 12:30 [1;100;34m..[0;00m
+-rw------- 1 dpham008 csmajs     0 Nov  8 12:30 tester2
+
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m #testing down[K[Kne
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (ls) [0;36m$[0m exit
+exit
+~
+dpham008@hammer $ exit
+exit
+
+Script done on Tue 11 Nov 2014 08:32:04 PM PST
