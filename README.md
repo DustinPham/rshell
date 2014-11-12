@@ -15,11 +15,11 @@ How to run
 1. `git clone https://github.com/DustinPham/rshell.git`
 2. `cd rshell`
 3. `make`
-
+4. Run either RShell or ls
 Running RShell:
 * `bin/rshell`
 
-Running LS:
+Running ls:
 * `bin/ls`
 
 Using RShell
@@ -40,7 +40,7 @@ Using RShell
 
 * To exit RShell, use the command `exit`.
 
-Using LS
+Using ls
 ------------
 * Run `bin/ls` to view files in the current directory.
 * Use optional flags `-a`, `-l`, and `-R` to show hidden files, use long listing format, and recursively go through directories respectively.
@@ -57,7 +57,7 @@ RShell:
 
 * Multiple connectors in front of and after a command without commands inbetween will cause a segmentation fault.
 
-LS:
+ls:
 
 * Total for the `-l` flag is incorrect.
 * Files and directories are not printed in alphabetical order.
