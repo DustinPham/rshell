@@ -15,7 +15,12 @@ How to run
 1. `git clone https://github.com/DustinPham/rshell.git`
 2. `cd rshell`
 3. `make`
-4. `bin/rshell`
+
+Running RShell:
+* `bin/rshell`
+
+Running LS:
+* `bin/ls`
 
 Using RShell
 -------------
@@ -35,8 +40,15 @@ Using RShell
 
 * To exit RShell, use the command `exit`.
 
+Using LS
+------------
+* Run `bin/ls` to view files in the current directory.
+* Use optional flags `-a`, `-l`, and `-R` to show hidden files, use long listing format, and recursively go through directories respectively.
+* `bin/ls` can be used with optional file or directory parameters.
+
 Bugs/Limitations
 -----------------
+RShell:
 * Connecting 3 or more commands on 1 line causes subsequent calls to almost any command to fail. However, doing multiple `ls -a` calls may fix RShell and it may continue to work.
 
 * Beginning RShell with a medium-to-long comment will cause the next few commands to fail.
@@ -45,8 +57,12 @@ Bugs/Limitations
 
 * Multiple connectors in front of and after a command without commands inbetween will cause a segmentation fault.
 
+LS:
 
-
+* Total for the `-l` flag is incorrect.
+* Files and directories are not printed in alphabetical order.
+* `-R` flag sometimes has awkward newline spacing.
+* Formatting is set to 4 files/directories per line, resulting in no more than 4 columns.
 
 
 
