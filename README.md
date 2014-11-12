@@ -65,7 +65,7 @@ ls:
 * Files and directories are not printed in alphabetical order.
 * `-R` flag sometimes has awkward newline spacing.
 * Formatting is set to 4 files/directories per line, resulting in no more than 4 columns.
-
+* Calling `bin/ls` on files or directories that do not exist results in a stat error.
 
 
 
