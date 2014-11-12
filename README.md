@@ -1,7 +1,7 @@
 RSHELL
 ===
 
-Licensing Information: READ LICENSE
+Licensing Information: BSD3
 ----
 Project source can be downloaded from https://github.com/DustinPham/rshell.git
 -----
@@ -9,32 +9,6 @@ Project source can be downloaded from https://github.com/DustinPham/rshell.git
 Author & Contributor List
 -----------
 Dustin Pham
-
-File List
----------
-```
-.:
-
-Makefile
-
-LICENSE
-
-README
-
-./src
-
-./tests
-```
-```
-/src:
-
-main.cpp
-```
-```
-./tests:
-
-exec.script
-```
 
 How to run
 ------------
@@ -69,11 +43,8 @@ Bugs/Limitations
 
 * `&` and `|` are not interpreted by the program and will cause a fail.
 
-* Char pointer pointer passed into execvp is not cleared after certain calls to execvp, causing more frequent command failures as RShell continues to run.
-
 * Multiple connectors in front of and after a command without commands inbetween will cause a segmentation fault.
 
-* Most failures and errors are from memory leaks.
 
 
 
