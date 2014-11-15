@@ -44,7 +44,7 @@ int main()
 
         if (a == 1)
         {
-            parse = strtok(charin, "&");
+            parse = strtok(charin, "&&");
 
             while (parse != NULL)
             {
@@ -54,7 +54,7 @@ int main()
                 i++;
                 numbersemi++;
 
-                parse = strtok(NULL, "&");
+                parse = strtok(NULL, "&&");
 
                 if (parse == NULL)
                 {
@@ -64,7 +64,7 @@ int main()
         }
         else if (o == 1)
         {
-            parse = strtok(charin, "|");
+            parse = strtok(charin, "||");
 
             while (parse != NULL)
             {
@@ -74,7 +74,7 @@ int main()
                 i++;
                 numbersemi++;
 
-                parse = strtok(NULL, "|");
+                parse = strtok(NULL, "||");
 
                 if (parse == NULL)
                 {
