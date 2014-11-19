@@ -1,6 +1,6 @@
-Script started on Wed 19 Nov 2014 12:15:30 AM PST
+Script started on Wed 19 Nov 2014 02:02:53 PM PST
 ~
-dpham008@hammer $ cs100
+dpham008@hammer $ cs[Ks100
 [0;91m
 ===============================================================================
 |                                                                             |
@@ -8,7 +8,7 @@ dpham008@hammer $ cs100
 |                                                                             |
 ===============================================================================
 [0m
-[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100[K0/rshell
 [s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (redirect) [0;36m$[0m make
 if [ ! -d "./bin" ];\
 	then mkdir bin;\
@@ -16,9 +16,12 @@ if [ ! -d "./bin" ];\
 g++ -Wall -Werror -ansi -pedantic src/main.cpp -o bin/rshell
 g++ -Wall -Werror -ansi -pedantic src/cp.cpp -o bin/cp
 g++ -Wall -Werror -ansi -pedantic src/ls.cpp -o bin/ls
-[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (redirect) [0;36m$[0m bin/shel[K[K[K[Krh[Kshell
-$ #testing io redirection
-$ cat<  <file
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (redirect) [0;36m$[0m bin/ls [K[K[Krshell
+$ ls -a     #ti esting input redirection
+$ ls
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ ca  t < file
+/home/csmajs/dpham008/cs100/rshell
 bin
 errors
 file
@@ -31,9 +34,8 @@ README.md
 src
 tester.cpp
 tests
+$ cat <  <ca  file
 /home/csmajs/dpham008/cs100/rshell
-$ ls > file
-$ cat < file
 bin
 errors
 file
@@ -46,10 +48,8 @@ README.md
 src
 tester.cpp
 tests
-$ ls -a < file
-.   bin     file   file3  .git	   Makefile   src	  tests
-..  errors  file2  file4  LICENSE  README.md  tester.cpp
-$ cat file
+$ cat <       file
+/home/csmajs/dpham008/cs100/rshell
 bin
 errors
 file
@@ -62,16 +62,18 @@ README.md
 src
 tester.cpp
 tests
-$ pwd < file
-/home/csmajs/dpham008/cs100/rshell
-$ pwd >file
-$ a cat <file
-/home/csmajs/dpham008/cs100/rshell
-$ pwd > file < file2
-$ cat < file
-/home/csmajs/dpham008/cs100/rshell
+$ #spaces do not affect it
 $ cat < file2
 /home/csmajs/dpham008/cs100/rshell
+$ ls < file2
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ cat file    <file2
+/home/csmajs/dpham008/cs100/rshell
+$ #redirection does nothing with ls
+$ # #r  pwd < file
+/home/csmajs/dpham008/cs100/rshell
+$ cat <file
+/home/csmajs/dpham008/cs100/rshell
 bin
 errors
 file
@@ -84,45 +86,26 @@ README.md
 src
 tester.cpp
 tests
+$ #testing output redirection
+$ cat < file
 /home/csmajs/dpham008/cs100/rshell
-$ cat pwd       pwd > file2
-$ cat file2
-/home/csmajs/dpham008/cs100/rshell
-$ pwd >> fle    ile  2
-$ cat file
-/home/csmajs/dpham008/cs100/rshell
-$ cat file2
-/home/csmajs/dpham008/cs100/rshell
-/home/csmajs/dpham008/cs100/rshell
-$ pwd   echo so many things being ag dded >  > fl ile2
-$ cat <file2
-/home/csmajs/dpham008/cs100/rshell
-/home/csmajs/dpham008/cs100/rshell
-so many things being added
-$ #test     i pwd > < file > file2
-$ cat file2
-/home/csmajs/dpham008/cs100/rshell
-$ p #test piping
-$ cat     vim     ex  ex  ls -a | i grep i
 bin
+errors
 file
 file2
 file3
 file4
-.git
+LICENSE
 Makefile
-$ ls | grep l
-file
-file2
-file3
-file4
-Makefile
-$ ls | gre p  p c
+README.md
 src
 tester.cpp
-$ pwd | grep c
+tests
+$ ls  pwd > file
+$ cat < file
 /home/csmajs/dpham008/cs100/rshell
-$ ls 0a |    -s a | grep .
+$ p ls -a <   > file
+$ cat < file
 .
 ..
 bin
@@ -138,21 +121,19 @@ README.md
 src
 tester.cpp
 tests
-$ #piping only wi r orks with single commands
-$ ls  @test     #test EC1
-$ ls  cat <<< hello
- hello
-$ cat << wo   < world
- world
-$ cat <<< "Hello world! "
- Hello world
-$ #testing EC3
-$ #testing EC2
-$ ls > 0> file
-bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
-$ cat ti  file
-$ ls 1> file
-$ cat file
+$ echo hello, im in file <   > file
+$ cat < file
+hello, im in file
+$ tes   #tes    #testing hello     input and output redirection together
+$ cat < > file > file2
+$ cat < file
+hello, im in file
+$ cat file    <file2
+hello, im in file
+$ ca  ls < file > file2
+$ cat <file
+hello, im in file
+$ cat <file2
 bin
 errors
 file
@@ -165,38 +146,116 @@ README.md
 src
 tester.cpp
 tests
-$ ls 2> file
-bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
-$ cat file
-$ g++ testing 1  .cpp 2> file
-$ cat file
-g++: error: testing.cpp: No such file or directory
-g++: fatal error: no input files
-compilation terminated.
-$ g++ g tesr ting   er.cpp >>  2> file
-$ cat file
-tester.cpp: In function ‘int main()’:
-tester.cpp:5:5: error: ‘hello’ was not declared in this scope
-     hello!
-     ^
-tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
-     hello!
-          ^
-$ ls  ls 0>> file
-bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
-$ cat file
-tester.cpp: In function ‘int main()’:
-tester.cpp:5:5: error: ‘hello’ was not declared in this scope
-     hello!
-     ^
-tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
-     hello!
-          ^
-$ ls 1>       pwd > 1> file
-$ cat file
+$ l pwd >   < file > file2
+$ cat fi  <file
+hello, im in file
+$ 
+$ cat <file2
 /home/csmajs/dpham008/cs100/rshell
-$ ls  ls 1>  > file
-$ cat file
+$ ls  pwd > file < file2
+$ cat f , <file2 
+/home/csmajs/dpham008/cs100/rshell
+$ cat <file2
+/home/csmajs/dpham008/cs100/rshell
+$ ls -a < >file<file2
+$ cat <file2
+/home/csmajs/dpham008/cs100/rshell
+$ cat file    <file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ #code only         i/o redirection on one lin          on one command only w works with 1 of each
+$ #testing piping
+$ ls -a | grep  ep .
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ ks  ls -a | grep c
+src
+tester.cpp
+$ ls -a | grep s
+errors
+src
+tester.cpp
+tests
+$ ls -a | | grep cp
+tester.cpp
+$ ls -a | grep t
+.git
+tester.cpp
+tests
+$ ls -a |    | grep t
+tester.cpp
+tests
+$ ls -a | grp ep g i
+bin
+file
+file2
+file3
+file4
+.git
+Makefile
+$ l ls -a | ; grep l
+file
+file2
+file3
+file4
+Makefile
+$ ow  pwd | f grep s
+/home/csmajs/dpham008/cs100/rshell
+$ pwd  |    pwd | grep j k
+$ #piping only works with single way pipes and no i/o redirection
+$ ls  #testing appendig ng to cou                append out redirection
+$ ls  cat < file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ cat >       pwd > file
+$ cat <file
+/home/csmajs/dpham008/cs100/rshell
+$ ls -a     pwd >> file
+$ cat f <file
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+$ ls >  > file
+$ cat <file
+/home/csmajs/dpham008/cs100/rshell
 /home/csmajs/dpham008/cs100/rshell
 bin
 errors
@@ -210,9 +269,9 @@ README.md
 src
 tester.cpp
 tests
-$ ls 0>> file
-bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
-$ l cat file
+$ pwd >    > file
+$ cat < file
+/home/csmajs/dpham008/cs100/rshell
 /home/csmajs/dpham008/cs100/rshell
 bin
 errors
@@ -226,24 +285,119 @@ README.md
 src
 tester.cpp
 tests
-$ ls 2>> file
+/home/csmajs/dpham008/cs100/rshell
+$ pwd >> file
+$ < cat <<    >   < file
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+$ echo t so mch  uch p appending! >> file
+$ cat < file
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+so much appending!
+$ p cat file        <file2
+/home/csmajs/dpham008/cs100/rshell
+$ cat file3   2 >> file
+$ cat < file
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+so much appending!
+/home/csmajs/dpham008/cs100/rshell
+$ #testing EC1
+$ cat << "  < : " h echo fo      xtra credit rocks"
+  extra credit rocks
+$ cat <<< extra credit rocks
+ extra credit rocks
+$ p cat<<   <<< " doing it for the extra credit
+ doing it for the extra credit
+$ cat<<   <<< so much         "su o much extra credit i  !"
+ so much extra credit!
+$ #testing e EC2
+$ ls 
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ ls 0> file e
 bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
 $ cat file
-/home/csmajs/dpham008/cs100/rshell
+$ ls -a 1>file
+$ cat < if  file
+.
+..
 bin
 errors
 file
 file2
 file3
 file4
+.git
 LICENSE
 Makefile
 README.md
 src
 tester.cpp
 tests
-$ g++ testin  er.cpp 2> f errors
-$ cat errors
+$ ls 1 -2   1 a 2>file
+.   bin     file   file3  .git	   Makefile   src	  tests
+..  errors  file2  file4  LICENSE  README.md  tester.cpp
+$ cat file
+$ l pwd 0> file
+/home/csmajs/dpham008/cs100/rshell
+$ f cat file
+$ pwd 1> file
+$ cat file
+/home/csmajs/dpham008/cs100/rshell
+$ pwd 0> file
+/home/csmajs/dpham008/cs100/rshell
+$ cat file
+$ pwd 2 > 1> file
+$ cat i file
+/home/csmajs/dpham008/cs100/rshell
+$ pwd ->  2> file
+/home/csmajs/dpham008/cs100/rshell
+$ cat file
+$ g++ tester.cpp 2> file
+$ cat file
 tester.cpp: In function ‘int main()’:
 tester.cpp:5:5: error: ‘hello’ was not declared in this scope
      hello!
@@ -251,8 +405,8 @@ tester.cpp:5:5: error: ‘hello’ was not declared in this scope
 tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
      hello!
           ^
-$ g++ tester.cpp 2>>f  errors
-$ cat errors
+$ g++ tester.cpp 2> file
+$ cat file
 tester.cpp: In function ‘int main()’:
 tester.cpp:5:5: error: ‘hello’ was not declared in this scope
      hello!
@@ -260,6 +414,126 @@ tester.cpp:5:5: error: ‘hello’ was not declared in this scope
 tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
      hello!
           ^
+$ #does not           gt++   ++ tester  .cpp   1> file
+[01m[Ktester.cpp:[m[K In function ‘[01m[Kint main()[m[K’:
+[01m[Ktester.cpp:5:5:[m[K [01;31m[Kerror: [m[K‘[01m[Khello[m[K’ was not declared in this scope
+     hello!
+[01;32m[K     ^[m[K
+[01m[Ktester.cpp:5:10:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[K![m[K’ token
+     hello!
+[01;32m[K          ^[m[K
+$ cat file
+$ # @ #testing Ec C2 with appenders now
+$ car   ls -a 0>> file        1>> file
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ ls -a 0>> file
+.   bin     file   file3  .git	   Makefile   src	  tests
+..  errors  file2  file4  LICENSE  README.md  tester.cpp
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ l pwd 1>> file
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+$ pwd 0>> file
+/home/csmajs/dpham008/cs100/rshell
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+$ pwd 2>> file
+/home/csmajs/dpham008/cs100/rshell
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+$ p pwd     g++ tester.cpp > 2>> file
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
 tester.cpp: In function ‘int main()’:
 tester.cpp:5:5: error: ‘hello’ was not declared in this scope
      hello!
@@ -267,7 +541,66 @@ tester.cpp:5:5: error: ‘hello’ was not declared in this scope
 tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
      hello!
           ^
-$ #done
+$ pwd 1>> file
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+/home/csmajs/dpham008/cs100/rshell
+$ p g++ tester.cpp 2> fi   > file
+$ cat file
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+/home/csmajs/dpham008/cs100/rshell
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+$ #all done testing!
 $ exit
 [s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (redirect) [0;36m$[0m exit
 exit
@@ -275,4 +608,4 @@ exit
 dpham008@hammer $ exit
 exit
 
-Script done on Wed 19 Nov 2014 12:21:43 AM PST
+Script done on Wed 19 Nov 2014 02:20:58 PM PST
