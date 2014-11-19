@@ -39,7 +39,10 @@ Using RShell
 
 * Anything after a `#` will be ignored.
 
+* Works with I/O redirection and single pipes.
+
 * To exit RShell, use the command `exit`.
+ 
 
 Using ls
 ------------
@@ -51,7 +54,11 @@ Using ls
 Bugs/Limitations
 -----------------
 RShell:
-* Connecting 3 or more commands on 1 line causes subsequent calls to almost any command to fail. However, doing multiple `ls -a` calls may fix RShell and it may continue to work.
+* Cannot do multiple pipes or pipes with I/O redirection.
+
+* Can only do 1 Input and 1 Output redirection on the same line.
+
+* EC1 prints an extra space at the beginning.
 
 * Beginning RShell with a medium-to-long comment will cause the next few commands to fail.
 
