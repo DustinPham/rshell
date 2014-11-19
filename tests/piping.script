@@ -1,0 +1,278 @@
+Script started on Wed 19 Nov 2014 12:15:30 AM PST
+~
+dpham008@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.                               |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (redirect) [0;36m$[0m make
+if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+g++ -Wall -Werror -ansi -pedantic src/main.cpp -o bin/rshell
+g++ -Wall -Werror -ansi -pedantic src/cp.cpp -o bin/cp
+g++ -Wall -Werror -ansi -pedantic src/ls.cpp -o bin/ls
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (redirect) [0;36m$[0m bin/shel[K[K[K[Krh[Kshell
+$ #testing io redirection
+$ cat<  <file
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+$ ls > file
+$ cat < file
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ ls -a < file
+.   bin     file   file3  .git	   Makefile   src	  tests
+..  errors  file2  file4  LICENSE  README.md  tester.cpp
+$ cat file
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ pwd < file
+/home/csmajs/dpham008/cs100/rshell
+$ pwd >file
+$ a cat <file
+/home/csmajs/dpham008/cs100/rshell
+$ pwd > file < file2
+$ cat < file
+/home/csmajs/dpham008/cs100/rshell
+$ cat < file2
+/home/csmajs/dpham008/cs100/rshell
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+/home/csmajs/dpham008/cs100/rshell
+$ cat pwd       pwd > file2
+$ cat file2
+/home/csmajs/dpham008/cs100/rshell
+$ pwd >> fle    ile  2
+$ cat file
+/home/csmajs/dpham008/cs100/rshell
+$ cat file2
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+$ pwd   echo so many things being ag dded >  > fl ile2
+$ cat <file2
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell
+so many things being added
+$ #test     i pwd > < file > file2
+$ cat file2
+/home/csmajs/dpham008/cs100/rshell
+$ p #test piping
+$ cat     vim     ex  ex  ls -a | i grep i
+bin
+file
+file2
+file3
+file4
+.git
+Makefile
+$ ls | grep l
+file
+file2
+file3
+file4
+Makefile
+$ ls | gre p  p c
+src
+tester.cpp
+$ pwd | grep c
+/home/csmajs/dpham008/cs100/rshell
+$ ls 0a |    -s a | grep .
+.
+..
+bin
+errors
+file
+file2
+file3
+file4
+.git
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ #piping only wi r orks with single commands
+$ ls  @test     #test EC1
+$ ls  cat <<< hello
+ hello
+$ cat << wo   < world
+ world
+$ cat <<< "Hello world! "
+ Hello world
+$ #testing EC3
+$ #testing EC2
+$ ls > 0> file
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ cat ti  file
+$ ls 1> file
+$ cat file
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ ls 2> file
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ cat file
+$ g++ testing 1  .cpp 2> file
+$ cat file
+g++: error: testing.cpp: No such file or directory
+g++: fatal error: no input files
+compilation terminated.
+$ g++ g tesr ting   er.cpp >>  2> file
+$ cat file
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+$ ls  ls 0>> file
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ cat file
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+$ ls 1>       pwd > 1> file
+$ cat file
+/home/csmajs/dpham008/cs100/rshell
+$ ls  ls 1>  > file
+$ cat file
+/home/csmajs/dpham008/cs100/rshell
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ ls 0>> file
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ l cat file
+/home/csmajs/dpham008/cs100/rshell
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ ls 2>> file
+bin  errors  file  file2  file3  file4	LICENSE  Makefile  README.md  src  tester.cpp  tests
+$ cat file
+/home/csmajs/dpham008/cs100/rshell
+bin
+errors
+file
+file2
+file3
+file4
+LICENSE
+Makefile
+README.md
+src
+tester.cpp
+tests
+$ g++ testin  er.cpp 2> f errors
+$ cat errors
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+$ g++ tester.cpp 2>>f  errors
+$ cat errors
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+tester.cpp: In function ‘int main()’:
+tester.cpp:5:5: error: ‘hello’ was not declared in this scope
+     hello!
+     ^
+tester.cpp:5:10: error: expected ‘;’ before ‘!’ token
+     hello!
+          ^
+$ #done
+$ exit
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (redirect) [0;36m$[0m exit
+exit
+~
+dpham008@hammer $ exit
+exit
+
+Script done on Wed 19 Nov 2014 12:21:43 AM PST
