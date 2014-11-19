@@ -1140,15 +1140,20 @@ void outzeroredirect(string input) {
 }
 
 void remsp(string &input) {
-    int q = input.find('"');
-    if (q == string::npos) {
-        int j = 0;
-        while (input.at(j) == ' ') {
-            input.erase(j, j+1);
+    if (input.at(0) == ' ') {
+        unsigned int q = input.find('"');
+        if (q == string::npos) {
+            int j = 0;
+            while (input.at(j) == ' ') {
+                input[j] = '\0';
+                j++;
+            }
         }
-    }
-    for (int i = 0; i < q; i++) {
-        input.erase(i, i+1);
+        else {
+            for (unsigned int i = 0; i < q; i++) {
+                input.erase(i, i+1);
+            }
+        }
     }
 }
 
@@ -1157,7 +1162,7 @@ void triinredirect(string input) {
     string right(input, input.find("<<<") + 3, string::npos);
 
     if (input.size() != 0) {
-        remsp(right);
+        //remsp(right);
         removeq(right);
     }
 
