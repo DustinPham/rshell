@@ -8,6 +8,9 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <stdio.h>
+#include <signal.h>
+#include <cstdlib>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -213,7 +216,28 @@ void rshell(int a, int o, string input) {
                     exit(1);
                 }
 
-                if (execvp(useme[0], useme) == -1) {
+                char path[1024] = getenv("PATH");
+                char *tempy = 0;
+                char **tempy2 = new char* [1024];
+                tempy = strtok(path, ":");
+                int n = 0;
+
+                while (tempy != NULL) {
+                    tempy2[n] = tempy;
+                    ifstream f;
+                    f.open(tempy2[n]);
+                    if (f.good()) {
+                        f.close();
+                        break;
+                    }
+                    else {
+                        f.close();
+                    }
+                    tempy = strtok(NULL, ":");
+                    n++;
+                }
+
+                if (execv(useme[0], useme) == -1) {
                     perror("There was an error in execvp.");
                 }
 
@@ -1269,7 +1293,16 @@ void outtworedirect(string input) {
     delete [] useme;
 }
 
+void sighandler(int signum) {
+    cout << endl;
+}
+
 int main() {
+    if (signal(SIGINT, sighandler) == SIG_ERR) {
+        perror("Error with signal");
+        exit(1);
+    }
+
     cout << "$ ";
     string input;
     getline(cin, input);
