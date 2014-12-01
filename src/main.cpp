@@ -1797,9 +1797,10 @@ int main() {
             inred = 1;
         }
         if (input.find("|") != string::npos) {
-            pipered = 1;
+            if (input.find("||") == string::npos) {
+                pipered = 1;
+            }
         }
-
 
         if (input.rfind(">") != input.find(">") && input.rfind(">") != input.find(">")+1) {
             error = 1;
