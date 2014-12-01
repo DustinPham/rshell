@@ -108,7 +108,7 @@ void rshell(int a, int o, string input) {
                 useme[0] = paths.at(0);
                 int h = 1;
 
-                while (access(useme[0], F_OK) != 0) {
+                while (access(useme[0], F_OK | X_OK) != 0) {
                     useme[0] = temphold;
                     strcat(paths.at(h), "/");
                     strcat(paths.at(h), useme[0]);
@@ -185,7 +185,7 @@ void rshell(int a, int o, string input) {
                 useme[0] = paths.at(0);
                 int h = 1;
 
-                while (access(useme[0], F_OK) != 0) {
+                while (access(useme[0], F_OK | X_OK) != 0) {
                     useme[0] = temphold;
                     strcat(paths.at(h), "/");
                     strcat(paths.at(h), useme[0]);
@@ -265,7 +265,7 @@ void rshell(int a, int o, string input) {
                 useme[0] = paths.at(0);
                 int h = 1;
 
-                while (access(useme[0], F_OK) != 0) {
+                while (access(useme[0], F_OK | X_OK) != 0) {
                     useme[0] = temphold;
                     strcat(paths.at(h), "/");
                     strcat(paths.at(h), useme[0]);
@@ -392,7 +392,7 @@ void errredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -502,7 +502,7 @@ void outredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -612,7 +612,7 @@ void outoutredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -723,7 +723,7 @@ void innredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -834,7 +834,7 @@ void inredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -969,7 +969,7 @@ void outinredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -1112,7 +1112,7 @@ void inoutredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -1219,7 +1219,7 @@ void piping(string &input, int &count, int fd[2]) {
             useme2[0] = paths.at(0);
             int h = 1;
 
-            while (access(useme2[0], F_OK) != 0) {
+            while (access(useme2[0], F_OK | X_OK) != 0) {
                 useme2[0] = temphold;
                 strcat(paths.at(h), "/");
                 strcat(paths.at(h), useme2[0]);
@@ -1313,7 +1313,7 @@ void piping(string &input, int &count, int fd[2]) {
             useme[0] = paths.at(0);
             int h = 1;
 
-            while (access(useme[0], F_OK) != 0) {
+            while (access(useme[0], F_OK | X_OK) != 0) {
                 useme[0] = temphold;
                 strcat(paths.at(h), "/");
                 strcat(paths.at(h), useme[0]);
@@ -1418,7 +1418,7 @@ void outzeroredirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
@@ -1574,7 +1574,7 @@ void outtworedirect(string input) {
         useme[0] = paths.at(0);
         int h = 1;
 
-        while (access(useme[0], F_OK) != 0) {
+        while (access(useme[0], F_OK | X_OK) != 0) {
             useme[0] = temphold;
             strcat(paths.at(h), "/");
             strcat(paths.at(h), useme[0]);
