@@ -11,6 +11,7 @@
 #include <signal.h>
 #include <cstdlib>
 #include <stdlib.h>
+#include <vector>
 
 using namespace std;
 
@@ -29,13 +30,9 @@ void rshell(int a, int o, string input) {
 
         while (parse != NULL) {
             semidone[i] = parse;
-
-            //cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
             i++;
             numbersemi++;
-
             parse = strtok(NULL, "&&");
-
             if (parse == NULL) {
                 semidone[i] = parse;
             }
@@ -46,13 +43,9 @@ void rshell(int a, int o, string input) {
 
         while (parse != NULL) {
             semidone[i] = parse;
-
-            //cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
             i++;
             numbersemi++;
-
             parse = strtok(NULL, "||");
-
             if (parse == NULL) {
                 semidone[i] = parse;
             }
@@ -63,13 +56,9 @@ void rshell(int a, int o, string input) {
 
         while (parse != NULL) {
             semidone[i] = parse;
-
-            //cout << "This is in semidone[" << i << "]: " << semidone[i] << endl;
             i++;
             numbersemi++;
-
             parse = strtok(NULL, ";");
-
             if (parse == NULL) {
                 semidone[i] = parse;
             }
@@ -84,12 +73,8 @@ void rshell(int a, int o, string input) {
             parse = strtok(semidone[k], " ");
             while (parse != NULL) {
                 useme[j] = parse;
-
-                //cout << "This is in useme[" << j << "]: " << useme[j] << endl;
                 j++;
-
                 parse = strtok(NULL, " ");
-
                 if (parse == NULL) {
                     useme[j] = parse;
                 }
@@ -98,7 +83,7 @@ void rshell(int a, int o, string input) {
             int pid = fork();
 
             if (pid == -1) {
-                perror("There was an error with fork().");
+                perror("Error with fork");
                 exit(1);
             }
             else if (pid == 0) {
@@ -106,8 +91,33 @@ void rshell(int a, int o, string input) {
                     exit(1);
                 }
 
-                if (execvp(useme[0], useme) == -1) {
-                    perror("There was an error in execvp.");
+                char *env = getenv("PATH");
+                char *parseenv = strtok(env, ":");
+                vector<char *> paths;
+                while (parseenv != NULL) {
+                    paths.push_back(parseenv);
+                    parseenv = strtok(NULL, ":");
+                    if (parseenv == NULL) {
+                        paths.push_back(parseenv);
+                    }
+                }
+
+                char *temphold = useme[0];
+                strcat(paths.at(0), "/");
+                strcat(paths.at(0), useme[0]);
+                useme[0] = paths.at(0);
+                int h = 1;
+
+                while (access(useme[0], F_OK) != 0) {
+                    useme[0] = temphold;
+                    strcat(paths.at(h), "/");
+                    strcat(paths.at(h), useme[0]);
+                    useme[0] = paths.at(h);
+                    h++;
+                }
+
+                if (execv(useme[0], useme) == -1) {
+                    perror("Error in execv");
                 }
 
                 //delete [] useme;
@@ -117,7 +127,7 @@ void rshell(int a, int o, string input) {
             else if (pid > 0) {
                 int x;
                 if (waitpid(-1, &x, 0) == -1) {
-                    perror("There was an error with wait().");
+                    perror("Error with wait");
                 }
 
                 if (strcmp(useme[0], "exit") == 0) {
@@ -139,10 +149,7 @@ void rshell(int a, int o, string input) {
             parse = strtok(semidone[k], " ");
             while (parse != NULL) {
                 useme[j] = parse;
-
-                //cout << "This is in useme[" << j << "]: " << useme[j] << endl;
                 j++;
-
                 parse = strtok(NULL, " ");
 
                 if (parse == NULL) {
@@ -153,7 +160,7 @@ void rshell(int a, int o, string input) {
             int pid = fork();
 
             if (pid == -1) {
-                perror("There was an error with fork().");
+                perror("Error with fork");
                 exit(1);
             }
             else if (pid == 0) {
@@ -161,8 +168,33 @@ void rshell(int a, int o, string input) {
                     exit(1);
                 }
 
-                if (execvp(useme[0], useme) == -1) {
-                    perror("There was an error in execvp.");
+                char *env = getenv("PATH");
+                char *parseenv = strtok(env, ":");
+                vector<char *> paths;
+                while (parseenv != NULL) {
+                    paths.push_back(parseenv);
+                    parseenv = strtok(NULL, ":");
+                    if (parseenv == NULL) {
+                        paths.push_back(parseenv);
+                    }
+                }
+
+                char *temphold = useme[0];
+                strcat(paths.at(0), "/");
+                strcat(paths.at(0), useme[0]);
+                useme[0] = paths.at(0);
+                int h = 1;
+
+                while (access(useme[0], F_OK) != 0) {
+                    useme[0] = temphold;
+                    strcat(paths.at(h), "/");
+                    strcat(paths.at(h), useme[0]);
+                    useme[0] = paths.at(h);
+                    h++;
+                }
+
+                if (execv(useme[0], useme) == -1) {
+                    perror("Error in execv");
                 }
 
                 //delete [] useme;
@@ -172,7 +204,7 @@ void rshell(int a, int o, string input) {
             else if (pid > 0) {
                 int x;
                 if (waitpid(-1, &x, 0) == -1) {
-                    perror("There was an error with wait().");
+                    perror("Error with wait");
                 }
 
                 if (strcmp(useme[0], "exit") == 0) {
@@ -208,7 +240,7 @@ void rshell(int a, int o, string input) {
             int pid = fork();
 
             if (pid == -1) {
-                perror("There was an error with fork().");
+                perror("Error with fork");
                 exit(1);
             }
             else if (pid == 0) {
@@ -216,29 +248,34 @@ void rshell(int a, int o, string input) {
                     exit(1);
                 }
 
-                char path[1024] = getenv("PATH");
-                char *tempy = 0;
-                char **tempy2 = new char* [1024];
-                tempy = strtok(path, ":");
-                int n = 0;
+                char *env = getenv("PATH");
+                char *parseenv = strtok(env, ":");
+                vector<char *> paths;
+                while (parseenv != NULL) {
+                    paths.push_back(parseenv);
+                    parseenv = strtok(NULL, ":");
+                    if (parseenv == NULL) {
+                        paths.push_back(parseenv);
+                    }
+                }
 
-                while (tempy != NULL) {
-                    tempy2[n] = tempy;
-                    ifstream f;
-                    f.open(tempy2[n]);
-                    if (f.good()) {
-                        f.close();
-                        break;
-                    }
-                    else {
-                        f.close();
-                    }
-                    tempy = strtok(NULL, ":");
-                    n++;
+                char *temphold = useme[0];
+                strcat(paths.at(0), "/");
+                strcat(paths.at(0), useme[0]);
+                useme[0] = paths.at(0);
+                int h = 1;
+
+                while (access(useme[0], F_OK) != 0) {
+                    useme[0] = temphold;
+                    strcat(paths.at(h), "/");
+                    strcat(paths.at(h), useme[0]);
+                    useme[0] = paths.at(h);
+                    h++;
                 }
 
                 if (execv(useme[0], useme) == -1) {
-                    perror("There was an error in execvp.");
+                    perror("Error in execv");
+                    exit(1);
                 }
 
                 //delete [] useme;
@@ -247,7 +284,7 @@ void rshell(int a, int o, string input) {
             }
             else if (pid > 0) {
                 if (wait(0) == -1) {
-                    perror("There was an error with wait().");
+                    perror("Error with wait");
                 }
                 if (strcmp(useme[0], "exit") == 0) {
                     exit(0);
@@ -337,8 +374,34 @@ void errredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -421,8 +484,34 @@ void outredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -505,8 +594,34 @@ void outoutredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -590,8 +705,34 @@ void innredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -675,8 +816,34 @@ void inredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -785,8 +952,33 @@ void outinredirect(string input) {
             exit(1);
         }
 
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -903,8 +1095,33 @@ void inoutredirect(string input) {
             exit(1);
         }
 
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -985,8 +1202,33 @@ void piping(string &input, int &count, int fd[2]) {
                 exit(1);
             }
 
-            if (execvp(useme2[0], useme2) == -1) {
-                perror("Error with execvp");
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
+                paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
+            }
+
+            char *temphold = useme2[0];
+            strcat(paths.at(0), "/");
+            strcat(paths.at(0), useme2[0]);
+            useme2[0] = paths.at(0);
+            int h = 1;
+
+            while (access(useme2[0], F_OK) != 0) {
+                useme2[0] = temphold;
+                strcat(paths.at(h), "/");
+                strcat(paths.at(h), useme2[0]);
+                useme2[0] = paths.at(h);
+                h++;
+            }
+
+            if (execv(useme2[0], useme2) == -1) {
+                perror("Error with execv");
                 exit(1);
             }
 
@@ -1053,8 +1295,34 @@ void piping(string &input, int &count, int fd[2]) {
                 perror("Error with dup2");
                 exit(1);
             }
-            if (execvp(useme[0], useme) == -1) {
-                perror("Error with execvp");
+
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
+                paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
+            }
+
+            char *temphold = useme[0];
+            strcat(paths.at(0), "/");
+            strcat(paths.at(0), useme[0]);
+            useme[0] = paths.at(0);
+            int h = 1;
+
+            while (access(useme[0], F_OK) != 0) {
+                useme[0] = temphold;
+                strcat(paths.at(h), "/");
+                strcat(paths.at(h), useme[0]);
+                useme[0] = paths.at(h);
+                h++;
+            }
+
+            if (execv(useme[0], useme) == -1) {
+                perror("Error with execv");
                 exit(1);
             }
 
@@ -1132,8 +1400,34 @@ void outzeroredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -1262,8 +1556,34 @@ void outtworedirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-        if (execvp(useme[0], useme) == -1) {
-            perror("Error with execvp");
+
+        char *env = getenv("PATH");
+        char *parseenv = strtok(env, ":");
+        vector<char *> paths;
+        while (parseenv != NULL) {
+            paths.push_back(parseenv);
+            parseenv = strtok(NULL, ":");
+            if (parseenv == NULL) {
+                paths.push_back(parseenv);
+            }
+        }
+
+        char *temphold = useme[0];
+        strcat(paths.at(0), "/");
+        strcat(paths.at(0), useme[0]);
+        useme[0] = paths.at(0);
+        int h = 1;
+
+        while (access(useme[0], F_OK) != 0) {
+            useme[0] = temphold;
+            strcat(paths.at(h), "/");
+            strcat(paths.at(h), useme[0]);
+            useme[0] = paths.at(h);
+            h++;
+        }
+
+        if (execv(useme[0], useme) == -1) {
+            perror("Error with execv");
             exit(1);
         }
 
@@ -1294,7 +1614,9 @@ void outtworedirect(string input) {
 }
 
 void sighandler(int signum) {
-    cout << endl;
+    if (signum == SIGINT) {
+        cout << endl;
+    }
 }
 
 int main() {
@@ -1303,7 +1625,13 @@ int main() {
         exit(1);
     }
 
-    cout << "$ ";
+    char cwd[BUFSIZ];
+    if (getcwd(cwd, BUFSIZ) == NULL) {
+        perror("Error with getcwd");
+        exit(1);
+    }
+    cout << cwd;
+    cout << " $ ";
     string input;
     getline(cin, input);
 
@@ -1343,7 +1671,9 @@ int main() {
         inred = 1;
     }
     if (input.find("|") != string::npos) {
-        pipered = 1;
+        if (input.find("||") == string::npos) {
+            pipered = 1;
+        }
     }
 
 
@@ -1424,7 +1754,12 @@ int main() {
             }
         }
 
-        cout << "$ ";
+        if (getcwd(cwd, BUFSIZ) == NULL) {
+            perror("Error with getcwd");
+            exit(1);
+        }
+        cout << cwd;
+        cout << " $ ";
         getline(cin, input);
 
         if (input.find("#") != string::npos) {
