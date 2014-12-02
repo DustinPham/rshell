@@ -91,38 +91,44 @@ void rshell(int a, int o, string input) {
                     exit(1);
                 }
 
-                char *env = getenv("PATH");
-                char *parseenv = strtok(env, ":");
-                vector<char *> paths;
-                while (parseenv != NULL) {
-                    paths.push_back(parseenv);
-                    parseenv = strtok(NULL, ":");
-                    if (parseenv == NULL) {
+                if (strcmp(useme[0], "cd") != 0) {
+                    char *env = getenv("PATH");
+                    char *parseenv = strtok(env, ":");
+                    vector<char *> paths;
+                    while (parseenv != NULL) {
                         paths.push_back(parseenv);
+                        parseenv = strtok(NULL, ":");
+                        if (parseenv == NULL) {
+                            paths.push_back(parseenv);
+                        }
                     }
+
+                    char *temphold = useme[0];
+                    char temppath[BUFSIZ];
+
+                    int check = 0;
+                    for (int g = 0; paths.at(g) != NULL; g++) {
+                        useme[0] = temphold;
+                        strcpy(temppath, paths.at(g));
+                        strcat(temppath, "/");
+                        strcat(temppath, useme[0]);
+                        useme[0] = temppath;
+                        if (execv(useme[0], useme) == -1) {
+                            continue;
+                        }
+                        else {
+                            check = 1;
+                            break;
+                        }
+                    }
+
+                    if (check == 0) {
+                        perror("Error in execv");
+                    }
+
+                    exit(1);
                 }
-
-                char *temphold = useme[0];
-                strcat(paths.at(0), "/");
-                strcat(paths.at(0), useme[0]);
-                useme[0] = paths.at(0);
-                int h = 1;
-
-                while (access(useme[0], F_OK | X_OK) != 0) {
-                    useme[0] = temphold;
-                    strcat(paths.at(h), "/");
-                    strcat(paths.at(h), useme[0]);
-                    useme[0] = paths.at(h);
-                    h++;
-                }
-
-                if (execv(useme[0], useme) == -1) {
-                    perror("Error in execv");
-                }
-
-                //delete [] useme;
-
-                exit(1);
+                exit(0);
             }
             else if (pid > 0) {
                 int x;
@@ -136,6 +142,20 @@ void rshell(int a, int o, string input) {
 
                 if (x != 0) {
                     break;
+                }
+                if (strcmp(useme[0], "cd") == 0) {
+                    if (input == "cd") {
+                        if (chdir(getenv("HOME")) == -1) {
+                            perror("Error with chdir");
+                            exit(1);
+                        }
+                    }
+                    else {
+                        if (chdir(useme[1]) == -1) {
+                            perror("Error with chdir");
+                            exit(1);
+                        }
+                    }
                 }
             }
             delete [] useme;
@@ -168,45 +188,64 @@ void rshell(int a, int o, string input) {
                     exit(1);
                 }
 
-                char *env = getenv("PATH");
-                char *parseenv = strtok(env, ":");
-                vector<char *> paths;
-                while (parseenv != NULL) {
-                    paths.push_back(parseenv);
-                    parseenv = strtok(NULL, ":");
-                    if (parseenv == NULL) {
+                if (strcmp(useme[0], "cd") != 0) {
+                    char *env = getenv("PATH");
+                    char *parseenv = strtok(env, ":");
+                    vector<char *> paths;
+                    while (parseenv != NULL) {
                         paths.push_back(parseenv);
+                        parseenv = strtok(NULL, ":");
+                        if (parseenv == NULL) {
+                            paths.push_back(parseenv);
+                        }
                     }
+
+                    char *temphold = useme[0];
+                    char temppath[BUFSIZ];
+
+                    int check = 0;
+                    for (int g = 0; paths.at(g) != NULL; g++) {
+                        useme[0] = temphold;
+                        strcpy(temppath, paths.at(g));
+                        strcat(temppath, "/");
+                        strcat(temppath, useme[0]);
+                        useme[0] = temppath;
+                        if (execv(useme[0], useme) == -1) {
+                            continue;
+                        }
+                        else {
+                            check = 1;
+                            break;
+                        }
+                    }
+
+                    if (check == 0) {
+                        perror("Error in execv");
+                    }
+
+                    exit(1);
                 }
-
-                char *temphold = useme[0];
-                strcat(paths.at(0), "/");
-                strcat(paths.at(0), useme[0]);
-                useme[0] = paths.at(0);
-                int h = 1;
-
-                while (access(useme[0], F_OK | X_OK) != 0) {
-                    useme[0] = temphold;
-                    strcat(paths.at(h), "/");
-                    strcat(paths.at(h), useme[0]);
-                    useme[0] = paths.at(h);
-                    h++;
-                }
-
-                if (execv(useme[0], useme) == -1) {
-                    perror("Error in execv");
-                }
-
-                //delete [] useme;
-
-                exit(1);
+                exit(0);
             }
             else if (pid > 0) {
                 int x;
                 if (waitpid(-1, &x, 0) == -1) {
                     perror("Error with wait");
                 }
-
+                if (strcmp(useme[0], "cd") == 0) {
+                    if (input == "cd") {
+                        if (chdir(getenv("HOME")) == -1) {
+                            perror("Error with chdir");
+                            exit(1);
+                        }
+                    }
+                    else {
+                        if (chdir(useme[1]) == -1) {
+                            perror("Error with chdir");
+                            exit(1);
+                        }
+                    }
+                }
                 if (strcmp(useme[0], "exit") == 0) {
                     exit(0);
                 }
@@ -226,12 +265,8 @@ void rshell(int a, int o, string input) {
             parse = strtok(semidone[k], " ");
             while (parse != NULL) {
                 useme[j] = parse;
-
-                //cout << "This is in useme[" << j << "]: " << useme[j] << endl;
                 j++;
-
                 parse = strtok(NULL, " ");
-
                 if (parse == NULL) {
                     useme[j] = parse;
                 }
@@ -247,44 +282,62 @@ void rshell(int a, int o, string input) {
                 if (strcmp(useme[0], "exit") == 0) {
                     exit(1);
                 }
-
-                char *env = getenv("PATH");
-                char *parseenv = strtok(env, ":");
-                vector<char *> paths;
-                while (parseenv != NULL) {
-                    paths.push_back(parseenv);
-                    parseenv = strtok(NULL, ":");
-                    if (parseenv == NULL) {
+                if (strcmp(useme[0], "cd") != 0) {
+                    char *env = getenv("PATH");
+                    char *parseenv = strtok(env, ":");
+                    vector<char *> paths;
+                    while (parseenv != NULL) {
                         paths.push_back(parseenv);
+                        parseenv = strtok(NULL, ":");
+                        if (parseenv == NULL) {
+                            paths.push_back(parseenv);
+                        }
                     }
-                }
 
-                char *temphold = useme[0];
-                strcat(paths.at(0), "/");
-                strcat(paths.at(0), useme[0]);
-                useme[0] = paths.at(0);
-                int h = 1;
+                    char *temphold = useme[0];
+                    char temppath[BUFSIZ];
 
-                while (access(useme[0], F_OK | X_OK) != 0) {
-                    useme[0] = temphold;
-                    strcat(paths.at(h), "/");
-                    strcat(paths.at(h), useme[0]);
-                    useme[0] = paths.at(h);
-                    h++;
-                }
+                    int check = 0;
+                    for (int g = 0; paths.at(g) != NULL; g++) {
+                        useme[0] = temphold;
+                        strcpy(temppath, paths.at(g));
+                        strcat(temppath, "/");
+                        strcat(temppath, useme[0]);
+                        useme[0] = temppath;
+                        if (execv(useme[0], useme) == -1) {
+                            continue;
+                        }
+                        else {
+                            check = 1;
+                            break;
+                        }
+                    }
 
-                if (execv(useme[0], useme) == -1) {
-                    perror("Error in execv");
+                    if (check == 0) {
+                        perror("Error in execv");
+                    }
+
                     exit(1);
                 }
-
-                //delete [] useme;
-
-                exit(1);
+                exit(0);
             }
             else if (pid > 0) {
                 if (wait(0) == -1) {
                     perror("Error with wait");
+                }
+                if (strcmp(useme[0], "cd") == 0) {
+                    if (input == "cd") {
+                        if (chdir(getenv("HOME")) == -1) {
+                            perror("Error with chdir");
+                            exit(1);
+                        }
+                    }
+                    else {
+                        if (chdir(useme[1]) == -1) {
+                            perror("Error with chdir");
+                            exit(1);
+                        }
+                    }
                 }
                 if (strcmp(useme[0], "exit") == 0) {
                     exit(0);
@@ -375,37 +428,44 @@ void errredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -421,7 +481,20 @@ void errredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -485,37 +558,44 @@ void outredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -531,7 +611,20 @@ void outredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -595,37 +688,44 @@ void outoutredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -641,7 +741,20 @@ void outoutredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -677,7 +790,6 @@ void innredirect(string input) {
 
     int pid = fork();
 
-
     int fd = open(right.c_str(), O_RDONLY | O_TRUNC);
     if (fd == -1) {
         perror("Error with open");
@@ -706,37 +818,44 @@ void innredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -752,7 +871,20 @@ void innredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+         if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -817,37 +949,44 @@ void inredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -863,7 +1002,20 @@ void inredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -952,37 +1104,44 @@ void outinredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -1006,7 +1165,20 @@ void outinredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -1095,37 +1267,44 @@ void inoutredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -1149,7 +1328,20 @@ void inoutredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -1165,30 +1357,30 @@ void piping(string &input, int &count, int fd[2]) {
 
     count++;
     if (input.find("|") == string::npos) {
-        char *temp2 = new char [1024];
-        strcpy(temp2, left.c_str());
+        char *temp = new char [1024];
+        strcpy(temp, left.c_str());
 
-        char *parse2 = strtok(temp2, " ");
-        char **useme2 = new char* [1024];
+        char *parse = strtok(temp, " ");
+        char **useme = new char* [1024];
         int j = 0;
-        while (parse2 != NULL) {
-            useme2[j] = parse2;
+        while (parse != NULL) {
+            useme[j] = parse;
             j++;
-            parse2 = strtok(NULL, " ");
+            parse = strtok(NULL, " ");
 
-            if (parse2 == NULL) {
-                useme2[j] = parse2;
+            if (parse == NULL) {
+                useme[j] = parse;
             }
         }
 
-        int pid2 = fork();
+        int pid = fork();
 
-        if (pid2 == -1) {
+        if (pid == -1) {
             perror("Error with fork");
             exit(1);
         }
-        else if (pid2 == 0) {
-            if (strcmp(useme2[0], "exit") == 0) {
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
                 exit(1);
             }
 /*
@@ -1202,39 +1394,46 @@ void piping(string &input, int &count, int fd[2]) {
                 exit(1);
             }
 
-            char *env = getenv("PATH");
-            char *parseenv = strtok(env, ":");
-            vector<char *> paths;
-            while (parseenv != NULL) {
-                paths.push_back(parseenv);
-                parseenv = strtok(NULL, ":");
-                if (parseenv == NULL) {
+            if (strcmp(useme[0], "cd") != 0) {
+                char *env = getenv("PATH");
+                char *parseenv = strtok(env, ":");
+                vector<char *> paths;
+                while (parseenv != NULL) {
                     paths.push_back(parseenv);
+                    parseenv = strtok(NULL, ":");
+                    if (parseenv == NULL) {
+                        paths.push_back(parseenv);
+                    }
                 }
-            }
 
-            char *temphold = useme2[0];
-            strcat(paths.at(0), "/");
-            strcat(paths.at(0), useme2[0]);
-            useme2[0] = paths.at(0);
-            int h = 1;
+                char *temphold = useme[0];
+                char temppath[BUFSIZ];
 
-            while (access(useme2[0], F_OK | X_OK) != 0) {
-                useme2[0] = temphold;
-                strcat(paths.at(h), "/");
-                strcat(paths.at(h), useme2[0]);
-                useme2[0] = paths.at(h);
-                h++;
-            }
+                int check = 0;
+                for (int g = 0; paths.at(g) != NULL; g++) {
+                    useme[0] = temphold;
+                    strcpy(temppath, paths.at(g));
+                    strcat(temppath, "/");
+                    strcat(temppath, useme[0]);
+                    useme[0] = temppath;
+                    if (execv(useme[0], useme) == -1) {
+                        continue;
+                    }
+                    else {
+                        check = 1;
+                        break;
+                    }
+                }
 
-            if (execv(useme2[0], useme2) == -1) {
-                perror("Error with execv");
+                if (check == 0) {
+                    perror("Error in execv");
+                }
+
                 exit(1);
             }
-
-            exit(1);
+            exit(0);
         }
-        else if (pid2 > 0) {
+        else if (pid > 0) {
             if (wait(0) == -1) {
                 perror("Error with wait");
                 exit(1);
@@ -1243,12 +1442,26 @@ void piping(string &input, int &count, int fd[2]) {
                 perror("Error with pipe close");
                 exit(1);
             }
-            if (strcmp(useme2[0], "exit") == 0) {
+            if (strcmp(useme[0], "cd") == 0) {
+                if (input == "cd") {
+                    if (chdir(getenv("HOME")) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
+                else {
+                    if (chdir(useme[1]) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
+            }
+            if (strcmp(useme[0], "exit") == 0) {
                 exit(0);
             }
         }
-        delete [] temp2;
-        delete [] useme2;
+        delete [] temp;
+        delete [] useme;
     }
     else {
         input = right;
@@ -1296,37 +1509,44 @@ void piping(string &input, int &count, int fd[2]) {
                 exit(1);
             }
 
-            char *env = getenv("PATH");
-            char *parseenv = strtok(env, ":");
-            vector<char *> paths;
-            while (parseenv != NULL) {
-                paths.push_back(parseenv);
-                parseenv = strtok(NULL, ":");
-                if (parseenv == NULL) {
+            if (strcmp(useme[0], "cd") != 0) {
+                char *env = getenv("PATH");
+                char *parseenv = strtok(env, ":");
+                vector<char *> paths;
+                while (parseenv != NULL) {
                     paths.push_back(parseenv);
+                    parseenv = strtok(NULL, ":");
+                    if (parseenv == NULL) {
+                        paths.push_back(parseenv);
+                    }
                 }
-            }
 
-            char *temphold = useme[0];
-            strcat(paths.at(0), "/");
-            strcat(paths.at(0), useme[0]);
-            useme[0] = paths.at(0);
-            int h = 1;
+                char *temphold = useme[0];
+                char temppath[BUFSIZ];
 
-            while (access(useme[0], F_OK | X_OK) != 0) {
-                useme[0] = temphold;
-                strcat(paths.at(h), "/");
-                strcat(paths.at(h), useme[0]);
-                useme[0] = paths.at(h);
-                h++;
-            }
+                int check = 0;
+                for (int g = 0; paths.at(g) != NULL; g++) {
+                    useme[0] = temphold;
+                    strcpy(temppath, paths.at(g));
+                    strcat(temppath, "/");
+                    strcat(temppath, useme[0]);
+                    useme[0] = temppath;
+                    if (execv(useme[0], useme) == -1) {
+                        continue;
+                    }
+                    else {
+                        check = 1;
+                        break;
+                    }
+                }
 
-            if (execv(useme[0], useme) == -1) {
-                perror("Error with execv");
+                if (check == 0) {
+                    perror("Error in execv");
+                }
+
                 exit(1);
             }
-
-            exit(1);
+            exit(0);
         }
         else if (pid > 0) {
             if (close(fd[1]) == -1) {
@@ -1337,7 +1557,20 @@ void piping(string &input, int &count, int fd[2]) {
                 perror("Error with wait");
                 exit(1);
             }
-
+            if (strcmp(useme[0], "cd") == 0) {
+                if (input == "cd") {
+                    if (chdir(getenv("HOME")) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
+                else {
+                    if (chdir(useme[1]) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
+            }
             if (strcmp(useme[0], "exit") == 0) {
                 exit(0);
             }
@@ -1401,37 +1634,44 @@ void outzeroredirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -1447,7 +1687,20 @@ void outzeroredirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -1557,37 +1810,44 @@ void outtworedirect(string input) {
             exit(1);
         }
 
-        char *env = getenv("PATH");
-        char *parseenv = strtok(env, ":");
-        vector<char *> paths;
-        while (parseenv != NULL) {
-            paths.push_back(parseenv);
-            parseenv = strtok(NULL, ":");
-            if (parseenv == NULL) {
+        if (strcmp(useme[0], "cd") != 0) {
+            char *env = getenv("PATH");
+            char *parseenv = strtok(env, ":");
+            vector<char *> paths;
+            while (parseenv != NULL) {
                 paths.push_back(parseenv);
+                parseenv = strtok(NULL, ":");
+                if (parseenv == NULL) {
+                    paths.push_back(parseenv);
+                }
             }
-        }
 
-        char *temphold = useme[0];
-        strcat(paths.at(0), "/");
-        strcat(paths.at(0), useme[0]);
-        useme[0] = paths.at(0);
-        int h = 1;
+            char *temphold = useme[0];
+            char temppath[BUFSIZ];
 
-        while (access(useme[0], F_OK | X_OK) != 0) {
-            useme[0] = temphold;
-            strcat(paths.at(h), "/");
-            strcat(paths.at(h), useme[0]);
-            useme[0] = paths.at(h);
-            h++;
-        }
+            int check = 0;
+            for (int g = 0; paths.at(g) != NULL; g++) {
+                useme[0] = temphold;
+                strcpy(temppath, paths.at(g));
+                strcat(temppath, "/");
+                strcat(temppath, useme[0]);
+                useme[0] = temppath;
+                if (execv(useme[0], useme) == -1) {
+                    continue;
+                }
+                else {
+                    check = 1;
+                    break;
+                }
+            }
 
-        if (execv(useme[0], useme) == -1) {
-            perror("Error with execv");
+            if (check == 0) {
+                perror("Error in execv");
+            }
+
             exit(1);
         }
-
-        exit(1);
+        exit(0);
     }
     else if (pid > 0) {
         if (wait(0) == -1) {
@@ -1603,7 +1863,20 @@ void outtworedirect(string input) {
             perror("Error with dup");
             exit(1);
         }
-
+        if (strcmp(useme[0], "cd") == 0) {
+            if (input == "cd") {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
         if (strcmp(useme[0], "exit") == 0) {
             exit(0);
         }
@@ -1675,7 +1948,6 @@ int main() {
             pipered = 1;
         }
     }
-
 
     if (input.rfind(">") != input.find(">") && input.rfind(">") != input.find(">")+1) {
         error = 1;
