@@ -79,19 +79,32 @@ void rshell(int a, int o, string input) {
                     useme[j] = parse;
                 }
             }
-
-            int pid = fork();
-
-            if (pid == -1) {
-                perror("Error with fork");
-                exit(1);
+            if (strcmp(useme[0], "cd") == 0) {
+                if (useme[1] == '\0') {
+                    if (chdir(getenv("HOME")) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
+                else {
+                    if (chdir(useme[1]) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
             }
-            else if (pid == 0) {
-                if (strcmp(useme[0], "exit") == 0) {
+            else {
+                int pid = fork();
+
+                if (pid == -1) {
+                    perror("Error with fork");
                     exit(1);
                 }
+                else if (pid == 0) {
+                    if (strcmp(useme[0], "exit") == 0) {
+                        exit(1);
+                    }
 
-                if (strcmp(useme[0], "cd") != 0) {
                     char *env = getenv("PATH");
                     char *parseenv = strtok(env, ":");
                     vector<char *> paths;
@@ -121,40 +134,24 @@ void rshell(int a, int o, string input) {
                             break;
                         }
                     }
-
+                    delete [] useme;
                     if (check == 0) {
                         perror("Error in execv");
                     }
-
                     exit(1);
                 }
-                exit(0);
-            }
-            else if (pid > 0) {
-                int x;
-                if (waitpid(-1, &x, 0) == -1) {
-                    perror("Error with wait");
-                }
-
-                if (strcmp(useme[0], "exit") == 0) {
-                    exit(0);
-                }
-
-                if (x != 0) {
-                    break;
-                }
-                if (strcmp(useme[0], "cd") == 0) {
-                    if (input == "cd") {
-                        if (chdir(getenv("HOME")) == -1) {
-                            perror("Error with chdir");
-                            exit(1);
-                        }
+                else if (pid > 0) {
+                    int x;
+                    if (waitpid(-1, &x, 0) == -1) {
+                        perror("Error with wait");
                     }
-                    else {
-                        if (chdir(useme[1]) == -1) {
-                            perror("Error with chdir");
-                            exit(1);
-                        }
+
+                    if (strcmp(useme[0], "exit") == 0) {
+                        exit(0);
+                    }
+
+                    if (x != 0) {
+                        break;
                     }
                 }
             }
@@ -176,19 +173,32 @@ void rshell(int a, int o, string input) {
                     useme[j] = parse;
                 }
             }
-
-            int pid = fork();
-
-            if (pid == -1) {
-                perror("Error with fork");
-                exit(1);
+            if (strcmp(useme[0], "cd") == 0) {
+                if (useme[1] == '\0') {
+                    if (chdir(getenv("HOME")) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
+                else {
+                    if (chdir(useme[1]) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
             }
-            else if (pid == 0) {
-                if (strcmp(useme[0], "exit") == 0) {
+            else {
+                int pid = fork();
+
+                if (pid == -1) {
+                    perror("Error with fork");
                     exit(1);
                 }
+                else if (pid == 0) {
+                    if (strcmp(useme[0], "exit") == 0) {
+                        exit(1);
+                    }
 
-                if (strcmp(useme[0], "cd") != 0) {
                     char *env = getenv("PATH");
                     char *parseenv = strtok(env, ":");
                     vector<char *> paths;
@@ -218,40 +228,25 @@ void rshell(int a, int o, string input) {
                             break;
                         }
                     }
-
+                    delete [] useme;
                     if (check == 0) {
                         perror("Error in execv");
                     }
-
                     exit(1);
                 }
-                exit(0);
-            }
-            else if (pid > 0) {
-                int x;
-                if (waitpid(-1, &x, 0) == -1) {
-                    perror("Error with wait");
-                }
-                if (strcmp(useme[0], "cd") == 0) {
-                    if (input == "cd") {
-                        if (chdir(getenv("HOME")) == -1) {
-                            perror("Error with chdir");
-                            exit(1);
-                        }
+                else if (pid > 0) {
+                    int x;
+                    if (waitpid(-1, &x, 0) == -1) {
+                        perror("Error with wait");
                     }
-                    else {
-                        if (chdir(useme[1]) == -1) {
-                            perror("Error with chdir");
-                            exit(1);
-                        }
-                    }
-                }
-                if (strcmp(useme[0], "exit") == 0) {
-                    exit(0);
-                }
 
-                if (x == 0) {
-                    break;
+                    if (strcmp(useme[0], "exit") == 0) {
+                        exit(0);
+                    }
+
+                    if (x == 0) {
+                        break;
+                    }
                 }
             }
             delete [] useme;
@@ -271,18 +266,31 @@ void rshell(int a, int o, string input) {
                     useme[j] = parse;
                 }
             }
-
-            int pid = fork();
-
-            if (pid == -1) {
-                perror("Error with fork");
-                exit(1);
+            if (strcmp(useme[0], "cd") == 0) {
+                if (useme[1] == '\0') {
+                    if (chdir(getenv("HOME")) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
+                else {
+                    if (chdir(useme[1]) == -1) {
+                        perror("Error with chdir");
+                        exit(1);
+                    }
+                }
             }
-            else if (pid == 0) {
-                if (strcmp(useme[0], "exit") == 0) {
+            else {
+                int pid = fork();
+
+                if (pid == -1) {
+                    perror("Error with fork");
                     exit(1);
                 }
-                if (strcmp(useme[0], "cd") != 0) {
+                else if (pid == 0) {
+                    if (strcmp(useme[0], "exit") == 0) {
+                        exit(1);
+                    }
                     char *env = getenv("PATH");
                     char *parseenv = strtok(env, ":");
                     vector<char *> paths;
@@ -312,35 +320,20 @@ void rshell(int a, int o, string input) {
                             break;
                         }
                     }
-
+                    delete [] useme;
                     if (check == 0) {
                         perror("Error in execv");
                     }
-
                     exit(1);
                 }
-                exit(0);
-            }
-            else if (pid > 0) {
-                if (wait(0) == -1) {
-                    perror("Error with wait");
-                }
-                if (strcmp(useme[0], "cd") == 0) {
-                    if (input == "cd") {
-                        if (chdir(getenv("HOME")) == -1) {
-                            perror("Error with chdir");
-                            exit(1);
-                        }
+                else if (pid > 0) {
+                    if (wait(0) == -1) {
+                        perror("Error with wait");
                     }
-                    else {
-                        if (chdir(useme[1]) == -1) {
-                            perror("Error with chdir");
-                            exit(1);
-                        }
+
+                    if (strcmp(useme[0], "exit") == 0) {
+                        exit(0);
                     }
-                }
-                if (strcmp(useme[0], "exit") == 0) {
-                    exit(0);
                 }
             }
             delete [] useme;
@@ -397,38 +390,51 @@ void errredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(right.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
-    }
-    int oldstderr = dup(2);
-    if (oldstderr == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
         }
-        if (close(2) == -1) {
-            perror("Error with close");
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+    }
+    else {
+        int pid = fork();
+
+        int fd = open(right.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (dup(fd) == -1) {
+        int oldstderr = dup(2);
+        if (oldstderr == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
+            }
+            if (close(2) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -458,48 +464,32 @@ void errredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstderr) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstderr) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
@@ -527,38 +517,51 @@ void outredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(right.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
-    }
-    int oldstdout = dup(1);
-    if (oldstdout == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
         }
-        if (close(1) == -1) {
-            perror("Error with close");
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+    }
+    else {
+        int pid = fork();
+
+        int fd = open(right.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (dup(fd) == -1) {
+        int oldstdout = dup(1);
+        if (oldstdout == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
+            }
+            if (close(1) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -588,48 +591,32 @@ void outredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdout) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdout) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
@@ -657,38 +644,51 @@ void outoutredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(right.c_str(), O_RDWR | O_CREAT | O_APPEND, 0644);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
-    }
-    int oldstdout = dup(1);
-    if (oldstdout == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
         }
-        if (close(1) == -1) {
-            perror("Error with close");
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+    }
+    else {
+        int pid = fork();
+
+        int fd = open(right.c_str(), O_RDWR | O_CREAT | O_APPEND, 0644);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (dup(fd) == -1) {
+        int oldstdout = dup(1);
+        if (oldstdout == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
+            }
+            if (close(1) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -718,48 +718,32 @@ void outoutredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdout) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdout) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
@@ -787,38 +771,51 @@ void innredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(right.c_str(), O_RDONLY | O_TRUNC);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
     }
-    int oldstdin = dup(0);
-    if (oldstdin == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
+    else {
+        int pid = fork();
 
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
+        int fd = open(right.c_str(), O_RDONLY | O_TRUNC);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (close(0) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if (dup(fd) == -1) {
+        int oldstdin = dup(0);
+        if (oldstdin == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(1);
+            }
+            if (close(0) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -848,48 +845,32 @@ void innredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdin) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-         if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdin) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
@@ -917,39 +898,51 @@ void inredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-
-    int fd = open(right.c_str(), O_RDONLY);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
     }
-    int oldstdin = dup(0);
-    if (oldstdin == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
+    else {
+        int pid = fork();
 
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
+        int fd = open(right.c_str(), O_RDONLY);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (close(0) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if (dup(fd) == -1) {
+        int oldstdin = dup(0);
+        if (oldstdin == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(1);
+            }
+            if (close(0) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -979,48 +972,32 @@ void inredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdin) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdin) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
@@ -1051,60 +1028,73 @@ void outinredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(right.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
     }
+    else {
+        int pid = fork();
 
-    int fd2 = open(wayright.c_str(), O_RDONLY);
-    if (fd2 == -1) {
-        perror("Error with open");
-        exit(1);
-    }
-
-    int oldstdout = dup(1);
-    if (oldstdout == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    int oldstdin = dup(0);
-    if (oldstdin == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
+        int fd = open(right.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
 
-        if (close(1) == -1) {
-            perror("Error with close");
+        int fd2 = open(wayright.c_str(), O_RDONLY);
+        if (fd2 == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (dup(fd) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (close(0) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if (dup(fd2) == -1) {
+
+        int oldstdout = dup(1);
+        if (oldstdout == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        int oldstdin = dup(0);
+        if (oldstdin == -1) {
+            perror("Error with dup");
+            exit(1);
+        }
+
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(1);
+            }
+
+            if (close(1) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+            if (close(0) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd2) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -1134,56 +1124,40 @@ void outinredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdout) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (close(fd2) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdin) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdout) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+            if (close(fd2) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdin) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
@@ -1214,60 +1188,73 @@ void inoutredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(wayright.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
     }
+    else {
+        int pid = fork();
 
-    int fd2 = open(right.c_str(), O_RDONLY);
-    if (fd2 == -1) {
-        perror("Error with open");
-        exit(1);
-    }
-
-    int oldstdout = dup(1);
-    if (oldstdout == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    int oldstdin = dup(0);
-    if (oldstdin == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
+        int fd = open(wayright.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0644);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
 
-        if (close(1) == -1) {
-            perror("Error with close");
+        int fd2 = open(right.c_str(), O_RDONLY);
+        if (fd2 == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (dup(fd) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (close(0) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if (dup(fd2) == -1) {
+
+        int oldstdout = dup(1);
+        if (oldstdout == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        int oldstdin = dup(0);
+        if (oldstdin == -1) {
+            perror("Error with dup");
+            exit(1);
+        }
+
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(1);
+            }
+
+            if (close(1) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+            if (close(0) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd2) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -1297,56 +1284,40 @@ void inoutredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdout) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (close(fd2) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdin) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdout) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+            if (close(fd2) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstdin) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
@@ -1372,29 +1343,36 @@ void piping(string &input, int &count, int fd[2]) {
                 useme[j] = parse;
             }
         }
-
-        int pid = fork();
-
-        if (pid == -1) {
-            perror("Error with fork");
-            exit(1);
+        if (strcmp(useme[0], "cd") == 0) {
+            if (useme[1] == '\0') {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
         }
-        else if (pid == 0) {
-            if (strcmp(useme[0], "exit") == 0) {
-                exit(1);
-            }
-/*
-            if (close(fd[1]) == -1) {
-                perror("Error with pipe close1");
-                exit(1);
-            }
-            */
-            if (dup2(fd[0], 0) == -1) {
-                perror("Error with dup2");
-                exit(1);
-            }
+        else {
+            int pid = fork();
 
-            if (strcmp(useme[0], "cd") != 0) {
+            if (pid == -1) {
+                perror("Error with fork");
+                exit(1);
+            }
+            else if (pid == 0) {
+                if (strcmp(useme[0], "exit") == 0) {
+                    exit(1);
+                }
+                if (dup2(fd[0], 0) == -1) {
+                    perror("Error with dup2");
+                    exit(1);
+                }
+
                 char *env = getenv("PATH");
                 char *parseenv = strtok(env, ":");
                 vector<char *> paths;
@@ -1424,40 +1402,25 @@ void piping(string &input, int &count, int fd[2]) {
                         break;
                     }
                 }
-
+                delete [] useme;
                 if (check == 0) {
                     perror("Error in execv");
                 }
+                exit(1);
+            }
+            else if (pid > 0) {
+                if (wait(0) == -1) {
+                    perror("Error with wait");
+                    exit(1);
+                }
+                if (close(fd[0]) == -1) {
+                    perror("Error with pipe close");
+                    exit(1);
+                }
 
-                exit(1);
-            }
-            exit(0);
-        }
-        else if (pid > 0) {
-            if (wait(0) == -1) {
-                perror("Error with wait");
-                exit(1);
-            }
-            if (close(fd[0]) == -1) {
-                perror("Error with pipe close");
-                exit(1);
-            }
-            if (strcmp(useme[0], "cd") == 0) {
-                if (input == "cd") {
-                    if (chdir(getenv("HOME")) == -1) {
-                        perror("Error with chdir");
-                        exit(1);
-                    }
+                if (strcmp(useme[0], "exit") == 0) {
+                    exit(0);
                 }
-                else {
-                    if (chdir(useme[1]) == -1) {
-                        perror("Error with chdir");
-                        exit(1);
-                    }
-                }
-            }
-            if (strcmp(useme[0], "exit") == 0) {
-                exit(0);
             }
         }
         delete [] temp;
@@ -1481,35 +1444,48 @@ void piping(string &input, int &count, int fd[2]) {
                 useme[i] = parse;
             }
         }
-
-        int pid = fork();
-
-        if (pid == -1) {
-            perror("Error with fork");
-            exit(1);
-        }
-        else if (pid == 0) {
-            if (strcmp(useme[0], "exit") == 0) {
-                exit(1);
-            }
-
-            if (count != 1) {
-                if (dup2(fd[0], 0) == -1) {
-                    perror("Error with dup2");
+        if (strcmp(useme[0], "cd") == 0) {
+            if (useme[1] == '\0') {
+                if (chdir(getenv("HOME")) == -1) {
+                    perror("Error with chdir");
                     exit(1);
                 }
             }
-            if (close(fd[0]) == -1) {
-                perror("Error with pipe close0");
+            else {
+                if (chdir(useme[1]) == -1) {
+                    perror("Error with chdir");
+                    exit(1);
+                }
+            }
+        }
+        else {
+            int pid = fork();
+
+            if (pid == -1) {
+                perror("Error with fork");
                 exit(1);
             }
+            else if (pid == 0) {
+                if (strcmp(useme[0], "exit") == 0) {
+                    exit(1);
+                }
 
-            if (dup2(fd[1], 1) == -1) {
-                perror("Error with dup2");
-                exit(1);
-            }
+                if (count != 1) {
+                    if (dup2(fd[0], 0) == -1) {
+                        perror("Error with dup2");
+                        exit(1);
+                    }
+                }
+                if (close(fd[0]) == -1) {
+                    perror("Error with pipe close0");
+                    exit(1);
+                }
 
-            if (strcmp(useme[0], "cd") != 0) {
+                if (dup2(fd[1], 1) == -1) {
+                    perror("Error with dup2");
+                    exit(1);
+                }
+
                 char *env = getenv("PATH");
                 char *parseenv = strtok(env, ":");
                 vector<char *> paths;
@@ -1539,40 +1515,25 @@ void piping(string &input, int &count, int fd[2]) {
                         break;
                     }
                 }
-
+                delete [] useme;
                 if (check == 0) {
                     perror("Error in execv");
                 }
+                exit(1);
+            }
+            else if (pid > 0) {
+                if (close(fd[1]) == -1) {
+                    perror("Error with pipe close1");
+                    exit(1);
+                }
+                if (wait(0) == -1) {
+                    perror("Error with wait");
+                    exit(1);
+                }
 
-                exit(1);
-            }
-            exit(0);
-        }
-        else if (pid > 0) {
-            if (close(fd[1]) == -1) {
-                perror("Error with pipe close1");
-                exit(1);
-            }
-            if (wait(0) == -1) {
-                perror("Error with wait");
-                exit(1);
-            }
-            if (strcmp(useme[0], "cd") == 0) {
-                if (input == "cd") {
-                    if (chdir(getenv("HOME")) == -1) {
-                        perror("Error with chdir");
-                        exit(1);
-                    }
+                if (strcmp(useme[0], "exit") == 0) {
+                    exit(0);
                 }
-                else {
-                    if (chdir(useme[1]) == -1) {
-                        perror("Error with chdir");
-                        exit(1);
-                    }
-                }
-            }
-            if (strcmp(useme[0], "exit") == 0) {
-                exit(0);
             }
         }
         delete [] temp;
@@ -1603,38 +1564,51 @@ void outzeroredirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(right.c_str(), O_RDONLY | O_CREAT | O_APPEND, 0644);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
-    }
-    int oldstdin = dup(0);
-    if (oldstdin == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
         }
-        if (close(0) == -1) {
-            perror("Error with close");
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+    }
+    else {
+        int pid = fork();
+
+        int fd = open(right.c_str(), O_RDONLY | O_CREAT | O_APPEND, 0644);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (dup(fd) == -1) {
+        int oldstdin = dup(0);
+        if (oldstdin == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
+            }
+            if (close(0) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -1664,45 +1638,30 @@ void outzeroredirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstdin) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
             }
-        }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
+            if(dup(oldstdin) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
+            }
         }
     }
 
@@ -1779,38 +1738,51 @@ void outtworedirect(string input) {
             useme[i] = parse;
         }
     }
-
-    int pid = fork();
-
-    int fd = open(right.c_str(), O_RDWR | O_CREAT | O_APPEND, 0644);
-    if (fd == -1) {
-        perror("Error with open");
-        exit(1);
-    }
-    int oldstderr = dup(2);
-    if (oldstderr == -1) {
-        perror("Error with dup");
-        exit(1);
-    }
-
-    if (pid == -1) {
-        perror("Error with fork");
-        exit(1);
-    }
-    else if (pid == 0) {
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
+    if (strcmp(useme[0], "cd") == 0) {
+        if (useme[1] == '\0') {
+            if (chdir(getenv("HOME")) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
         }
-        if (close(2) == -1) {
-            perror("Error with close");
+        else {
+            if (chdir(useme[1]) == -1) {
+                perror("Error with chdir");
+                exit(1);
+            }
+        }
+    }
+    else {
+        int pid = fork();
+
+        int fd = open(right.c_str(), O_RDWR | O_CREAT | O_APPEND, 0644);
+        if (fd == -1) {
+            perror("Error with open");
             exit(1);
         }
-        if (dup(fd) == -1) {
+        int oldstderr = dup(2);
+        if (oldstderr == -1) {
             perror("Error with dup");
             exit(1);
         }
 
-        if (strcmp(useme[0], "cd") != 0) {
+        if (pid == -1) {
+            perror("Error with fork");
+            exit(1);
+        }
+        else if (pid == 0) {
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
+            }
+            if (close(2) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if (dup(fd) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
             char *env = getenv("PATH");
             char *parseenv = strtok(env, ":");
             vector<char *> paths;
@@ -1840,48 +1812,32 @@ void outtworedirect(string input) {
                     break;
                 }
             }
-
+            delete [] useme;
             if (check == 0) {
                 perror("Error in execv");
             }
-
             exit(1);
         }
-        exit(0);
-    }
-    else if (pid > 0) {
-        if (wait(0) == -1) {
-            perror("Error with wait");
-            exit(1);
-        }
-
-        if (close(fd) == -1) {
-            perror("Error with close");
-            exit(1);
-        }
-        if(dup(oldstderr) == -1) {
-            perror("Error with dup");
-            exit(1);
-        }
-        if (strcmp(useme[0], "cd") == 0) {
-            if (input == "cd") {
-                if (chdir(getenv("HOME")) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+        else if (pid > 0) {
+            if (wait(0) == -1) {
+                perror("Error with wait");
+                exit(1);
             }
-            else {
-                if (chdir(useme[1]) == -1) {
-                    perror("Error with chdir");
-                    exit(1);
-                }
+
+            if (close(fd) == -1) {
+                perror("Error with close");
+                exit(1);
+            }
+            if(dup(oldstderr) == -1) {
+                perror("Error with dup");
+                exit(1);
+            }
+
+            if (strcmp(useme[0], "exit") == 0) {
+                exit(0);
             }
         }
-        if (strcmp(useme[0], "exit") == 0) {
-            exit(0);
-        }
     }
-
     delete [] temp;
     delete [] useme;
 }
