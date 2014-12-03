@@ -1,0 +1,111 @@
+Script started on Wed 03 Dec 2014 02:01:56 PM PST
+~
+dpham008@hammer $ cs [K100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.                               |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/rshell
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (signals) [0;36m$[0m make
+if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+g++ -Wall -Werror -ansi -pedantic src/main.cpp -o bin/rshell
+g++ -Wall -Werror -ansi -pedantic src/cp.cpp -o bin/cp
+g++ -Wall -Werror -ansi -pedantic src/ls.cpp -o bin/ls
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (signals) [0;36m$[0m bin/rhslel[K[K[K[K[Kshell
+/home/csmajs/dpham008/cs100/rshell $ g++ src/main.cpp
+/home/csmajs/dpham008/cs100/rshell $ ls
+a.out  bin  file  LICENSE  Makefile  README.md	src  tests
+/home/csmajs/dpham008/cs100/rshell $ cd .. &&     
+/home/csmajs/dpham008/cs100 $ ls
+firstrepo  labs  rshell  rshell-1
+/home/csmajs/dpham008/cs100 $ cd rshell
+/home/csmajs/dpham008/cs100/rshell $ cd .. && g++ ma  rshell/src/mi an in.cpp && la s
+a.out  firstrepo  labs	rshell	rshell-1
+/home/csmajs/dpham008/cs100 $ rm -rf a.out
+/home/csmajs/dpham008/cs100 $ ls
+firstrepo  labs  rshell  rshell-1
+/home/csmajs/dpham008/cs100 $ cd rshell/src
+/home/csmajs/dpham008/cs100/rshell/src $ ls
+a.out  cp.cpp  file  ls.cpp  main.cpp  Timer.h
+/home/csmajs/dpham008/cs100/rshell/src $ cd .    noooo && cd ..
+Error in execv: No such file or directory
+/home/csmajs/dpham008/cs100/rshell/src $ noooo || cd ..
+Error in execv: No such file or directory
+/home/csmajs/dpham008/cs100/rshell $ ls
+a.out  bin  file  LICENSE  Makefile  README.md	src  tests
+/home/csmajs/dpham008/cs100/rshell $ pwd && cd ..
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100 $ ls
+firstrepo  labs  rshell  rshell-1
+/home/csmajs/dpham008/cs100 $ cd    pwd ;cd ..;   rshell;owd   pwd
+/home/csmajs/dpham008/cs100
+/home/csmajs/dpham008/cs100/rshell
+/home/csmajs/dpham008/cs100/rshell $ ls  ls || cd ..
+a.out  bin  file  LICENSE  Makefile  README.md	src  tests
+/home/csmajs/dpham008/cs100/rshell $ #cd works with && || and ; connectors
+/home/csmajs/dpham008/cs100/rshell $ #testing with             esting with rec direction/pipes
+/home/csmajs/dpham008/cs100/rshell $ cd .. > file
+/home/csmajs/dpham008/cs100 $ ls
+firstrepo  labs  rshell  rshell-1
+/home/csmajs/dpham008/cs100 $ cd rshell
+/home/csmajs/dpham008/cs100/rshell $ ls
+a.out  bin  file  LICENSE  Makefile  README.md	src  tests
+/home/csmajs/dpham008/cs100/rshell $ cat file
+hey
+/home/csmajs/dpham008/cs100/rshell $ cd  rm -rg f file
+/home/csmajs/dpham008/cs100/rshell $ ls
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+/home/csmajs/dpham008/cs100/rshell $ cd .. > file
+/home/csmajs/dpham008/cs100 $ ls
+firstrepo  labs  rshell  rshell-1
+/home/csmajs/dpham008/cs100 $ cd rshell
+/home/csmajs/dpham008/cs100/rshell $ ls
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+/home/csmajs/dpham008/cs100/rshell $ cd .. < file
+/home/csmajs/dpham008/cs100 $ cd . rshell
+/home/csmajs/dpham008/cs100/rshell $ ls
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+/home/csmajs/dpham008/cs100/rshell $ cd >> file
+/home/csmajs/dpham008 $ l cd cs100/rshell && ls
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+/home/csmajs/dpham008/cs100/rshell $ # cd .. | grep c
+
+^C
+/home/csmajs/dpham008/cs100 $ #cont   tr rk l -  -c ends the current process, but not the whjo    entire rhsle    shell
+/home/csmajs/dpham008/cs100 $ #testing ctrl-c
+/home/csmajs/dpham008/cs100 $ cat
+
+
+
+
+
+
+^C
+/home/csmajs/dpham008/cs100 $ ^C
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+^C
+ls
+firstrepo  labs  rshell  rshell-1
+/home/csmajs/dpham008/cs100 $ echo hello! && cd ..
+hello!
+/home/csmajs/dpham008 $ cd cs100/rshell
+/home/csmajs/dpham008/cs100/rshell $ #done testing
+/home/csmajs/dpham008/cs100/rshell $ exit
+[s%%%%%%%%%%[u[0;32mdpham008[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/rshell[0;95m (signals) [0;36m$[0m exit
+exit
+~
+dpham008@hammer $ exit
+exit
+
+Script done on Wed 03 Dec 2014 02:08:55 PM PST
