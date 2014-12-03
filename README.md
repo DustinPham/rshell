@@ -33,6 +33,8 @@ Using RShell
 
 * Connecting multiple commands with `||` will only execute the command if the prior command failed.
 
+* Allows the changing of directories with `cd`.
+
 * Does NOT support multiple types of connectors on one line.
 
 * Extra connectors in front of and after commands do nothing.
@@ -42,7 +44,7 @@ Using RShell
 * Works with I/O redirection and single pipes.
 
 * To exit RShell, use the command `exit`.
- 
+
 
 Using ls
 ------------
@@ -56,15 +58,18 @@ Bugs/Limitations
 RShell:
 * Cannot do multiple pipes or pipes with I/O redirection.
 
-* Can only do 1 Input and 1 Output redirection on the same line.
+* Using `cd` with pipes causes rshell to stall.
 
-* EC1 prints an extra space at the beginning.
+* Running `make` within rshell causes a `g++` error.
 
-* Beginning RShell with a medium-to-long comment will cause the next few commands to fail.
+* Can only do up to 1 Input and 1 Output redirection on the same line.
 
-* `&` and `|` are not interpreted by the program and will cause a fail.
+* `<<<` prints an extra space at the beginning.
 
-* Multiple connectors in front of and after a command without commands inbetween will cause a segmentation fault.
+* `&` is not interpreted by the program and will cause a fail.
+
+* Still has some possible memory leaks when non-sense commands are inputted such as `asd`.
+
 
 ls:
 
