@@ -16,55 +16,7 @@
 
 using namespace std;
 
-/*
-void makeo(vector<string> &d, vector<string> &o, int aflag,int lflag, int Rflag, int args, int &width) {
-    struct stat s;
 
-    if (lstat((d.at(0)).c_str(), &s) == -1) {
-        perror("Error with stat");
-        exit(1);
-    }
-    if (S_ISREG(s.st_mode)) {
-        o.push_back(d.at(0));
-    }
-    else if (S_ISDIR(s.st_mode)) {
-        DIR *dirp = opendir((d.at(0)).c_str());
-        if (dirp == '\0') {
-            perror("Error with opendir");
-            exit(1);
-        }
-
-        dirent *direntp;
-        while ((direntp = readdir(dirp))) {
-            if (direntp == '\0') {
-                perror("Error with readdir");
-                exit(1);
-            }
-
-            char temp[512];
-            strcpy(temp, (d.at(0)).c_str());
-            strcat(temp, "/");
-            strcat(temp, direntp->d_name);
-
-            if (lstat(temp, &s) == -1) {
-                perror("Error with stat");
-                exit(1);
-            }
-
-            if (aflag == 1) {
-                o.push_back(direntp->d_name);
-            }
-            else if (direntp->d_name[0] != '.') {
-                o.push_back(direntp->d_name);
-            }
-        }
-        if (closedir(dirp) == -1) {
-            perror("Error with closedir");
-            exit(1);
-        }
-    }
-}
-*/
 
 void print(vector<string> &d, int aflag,int lflag, int Rflag, int args, int &width) {
     struct stat s;
