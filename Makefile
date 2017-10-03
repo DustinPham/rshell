@@ -1,5 +1,5 @@
 G++ = g++ -Wall -Werror -ansi -pedantic
- 
+  
 all:
 	if [ ! -d "./bin" ];\
 	then mkdir bin;\
