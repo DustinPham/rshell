@@ -24,7 +24,6 @@ private:
     timeval new_wc_time;
 };
 
-
 int
 Timer::start()
 {
