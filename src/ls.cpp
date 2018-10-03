@@ -17,6 +17,7 @@
 using namespace std;
 
 /*
+Comment this mess
 void makeo(vector<string> &d, vector<string> &o, int aflag,int lflag, int Rflag, int args, int &width) {
     struct stat s;
 
