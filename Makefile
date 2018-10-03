@@ -1,4 +1,4 @@
-G++ = g++ -Wall -Werror -ansi -pedantic 
+G++ = g++ -Wall -Werror -ansi -pedantic
   
 all:
 	if [ ! -d "./bin" ];\
