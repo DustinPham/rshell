@@ -1,7 +1,7 @@
 RSHELL 
 ===
 
-Licensing Information: BSD3
+Licensing Information: BSD3 
 ----
 Project source can be downloaded from https://github.com/DustinPham/rshell.git
 -----
