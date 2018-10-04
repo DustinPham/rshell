@@ -45,7 +45,6 @@ Using RShell
 
 * To exit RShell, use the command `exit`.
 
-
 Using ls
 ------------
 * Run `bin/ls` to view files in the current directory.
