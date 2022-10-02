@@ -8,7 +8,7 @@ Project source can be downloaded from https://github.com/DustinPham/rshell.git
 
 Author & Contributor List
 -----------
-Dustin Ph
+Dustin Pha
 
 How to run
 ------------
